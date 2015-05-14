@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/offer_layout_offer_image"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:adjustViewBounds="true"
+        android:src="@drawable/i_generalmills" />
+
+    <TextView
+        android:id="@+id/offer_description"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:maxLines="2"
+        android:padding="2.5dp"
+        android:text="All Natural Eggs - Grade A"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/offer_savings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/catalina_orange"
+        android:gravity="center"
+        android:text="Save $1.50"
+        android:textColor="@android:color/white"
+        android:paddingTop="2.5dp"
+        android:paddingBottom="2.5dp"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/offer_savings"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/offer_expiration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="12sp"
+            android:paddingTop="2.5dp"
+            android:paddingBottom="2.5dp"
+            android:text="Expires May 31,2015"/>
+
+        <Button
+            android:id="@+id/offer_clip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawablePadding="5dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="right"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

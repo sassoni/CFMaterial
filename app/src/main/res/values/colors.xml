@@ -14,4 +14,9 @@
 
     <item name="divider" type="color">#EEEEEE</item>
 
+    <color name="catalina_orange">#ff6900</color>
+    <color name="disabled">#E0E0E0</color>
+
+    <color name="offer_clipped_state">#39b54a</color>
+    <color name="offer_unclipped_state">@color/accent</color>
 </resources>

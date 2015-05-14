@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ebebeb">
+
+    <!--<GridView
+        android:id="@+id/offer_fragment_gridview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="200dp"
+        android:gravity="center"
+        android:horizontalSpacing="10dp"
+        android:numColumns="2"
+        android:padding="10dp"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="10dp" />-->
+
+    <ListView
+        android:id="@+id/offer_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+
+</LinearLayout>

@@ -14,4 +14,127 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Clip Button String-->
+    <string name="offer_clip_unclipped">Clip Coupon</string>
+    <string name="offer_clip_clipped">Clipped</string>
+
+    <!--Offer JSON String-->
+    <string name="offer_data_json">[
+    {
+        \"offerId\": 0,
+        \"description\": \"All Natural Eggs Grade-A\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 25¢\"
+    },
+    {
+        \"offerId\": 1,
+        \"description\": \"Breakstone\'s Cottage Cheese Doubles\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 50¢\"
+    },
+    {
+        \"offerId\": 2,
+        \"description\": \"General Mills Cheerios Strawberry\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 50¢\"
+    },
+    {
+        \"offerId\": 3,
+        \"description\": \"Pair of Chi Chis\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save $1.00\"
+    },
+    {
+        \"offerId\": 4,
+        \"description\": \"Chobani Greek Yogurt\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 75¢\"
+    },
+    {
+        \"offerId\": 5,
+        \"description\": \"Pair of Florida Naturals\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save $1.00\"
+    },
+    {
+        \"offerId\": 6,
+        \"description\": \"Pack of three General Mills Cheerios\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save $1.50\"
+    },
+    {
+        \"offerId\": 7,
+        \"description\": \"Gerber Oranges\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 40¢\"
+    },
+    {
+        \"offerId\": 8,
+        \"description\": \"Glade Expression\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 75¢\"
+    },
+    {
+        \"offerId\": 9,
+        \"description\": \"High Performance Detergent\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 50¢\"
+    },
+    {
+        \"offerId\": 10,
+        \"description\": \"Lobster and Seafood\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save $1.25\"
+    },
+    {
+        \"offerId\": 11,
+        \"description\": \"Goldfish Mac and Cheese 3 pac\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"One Free\"
+    },
+    {
+        \"offerId\": 12,
+        \"description\": \"Minute Maide Lemonade\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 25¢\"
+    },
+    {
+        \"offerId\": 13,
+        \"description\": \"Peperage Farms Wheat Bread\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 25¢\"
+    },
+    {
+        \"offerId\": 14,
+        \"description\": \"Perdue Chicken\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 50¢\"
+    },
+    {
+        \"offerId\": 15,
+        \"description\": \"Puffs Plus Lotion\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 75¢\"
+    },
+    {
+        \"offerId\": 16,
+        \"description\": \"Scott 12 Rolls\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save $1.00\"
+    },
+    {
+        \"offerId\": 17,
+        \"description\": \"Cranberry Juice\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Save 25¢\"
+    },
+    {
+        \"offerId\": 18,
+        \"description\": \"Kellogs Special Pack\",
+        \"expiration\": \"Expires May 31,2015\",
+        \"heading\": \"Buy 3 Get 1\"
+    }
+]</string>
+
 </resources>

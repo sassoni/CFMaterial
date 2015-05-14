@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:id="@+id/offer_layout_offer_image"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/white" />
+
+    <TextView
+        android:id="@+id/offer_layout_offer_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/offer_layout_offer_image"
+        android:layout_toRightOf="@+id/offer_layout_offer_image"
+        android:text="Save $1.50"
+        android:textColor="@color/catalina_orange"
+        android:textSize="18sp"
+        android:padding="2.5dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/offer_layout_offer_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="2.5dp"
+        android:layout_below="@+id/offer_layout_offer_heading"
+        android:layout_toRightOf="@+id/offer_layout_offer_image"
+        android:maxLines="2"
+        android:text="On any ONE(1) six pack or larger"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/offer_layout_offer_expiration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="2.5dp"
+        android:layout_below="@+id/offer_layout_offer_description"
+        android:layout_toRightOf="@+id/offer_layout_offer_image"
+        android:text="Expires 09/12/2014"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/offer_clip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:drawablePadding="5dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignBottom="@+id/offer_layout_offer_image"
+        android:layout_below="@+id/offer_layout_offer_expiration"
+        android:layout_toRightOf="@+id/offer_layout_offer_image"
+        android:layout_alignParentRight="true"
+        android:gravity="center_vertical|right"
+        android:textSize="12sp" />
+
+</RelativeLayout>

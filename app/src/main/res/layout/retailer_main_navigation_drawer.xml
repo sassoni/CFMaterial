@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="left|start"
+    android:layout_marginRight="20dp"
+    android:background="@android:color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/navigation_drawer_profile_view"
+                android:layout_width="match_parent"
+                android:layout_height="175dp"
+                android:elevation="4dp">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:background="@color/primary" />
+
+                <TextView
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="rohith.avatapally@catalinamarketing.com"
+                    android:singleLine="true"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/credential"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_above="@+id/email"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="616-516-6730"
+                    android:textColor="#ffffff"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/navigation_drawer_dividerview"
+                android:layout_width="match_parent"
+                android:layout_height="16dp"
+                android:layout_below="@+id/navigation_drawer_profile_view" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="Stop And Shop Card"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="Preferred Store"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="Terms &amp; Conditions"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/navigation_drawer_help_subheader"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.54"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center_vertical"
+                android:paddingLeft="16dp"
+                android:text="How Do I..."
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="... Connect to Wi-Fi?"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="... Buy Produce?"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="... Checkout?"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="... View Tutorial?"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <ImageView
+                android:id="@+id/activity_main_divider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/activity_main_checkout"
+                android:alpha="0.12"
+                android:background="@android:color/black"
+                android:paddingLeft="16dp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="Contacts"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+            <Button
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:alpha="0.87"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="16dp"
+                android:text="About"
+                android:textAllCaps="false"
+                android:textColor="#000000"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
