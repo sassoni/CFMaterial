@@ -12,6 +12,6 @@
     <item name="primary_text" type="color">#212121</item>
     <item name="secondary_text" type="color">#727272</item>
 
-    <item name="divider" type="color">#B6B6B6</item>
+    <item name="divider" type="color">#EEEEEE</item>
 
 </resources>

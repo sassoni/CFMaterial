@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:gravity="center_vertical"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/nav_drawer_row_item_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:drawableLeft="@drawable/ic_action_place"
+        android:drawablePadding="32dp"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="left|center_vertical"
+        android:text="Retailers"
+        android:textColor="@color/primary_text"
+        android:textSize="14sp" />
+
+</LinearLayout>

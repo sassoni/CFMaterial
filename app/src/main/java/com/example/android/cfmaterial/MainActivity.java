@@ -10,8 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -20,13 +21,6 @@ public class MainActivity extends ActionBarActivity {
     private DrawerLayout drawer;
     private ListView drawerListView;
 
-    private String[] contents = new String[]{"Login",
-            "All retailers",
-            "My retailers",
-            "Nearby reatilers",
-            "Settings",
-            "Help",
-            "About"};
        /* implements NavigationDrawerFragment.NavigationDrawerCallbacks */
 
 //    /**
@@ -55,7 +49,22 @@ public class MainActivity extends ActionBarActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
 
-        drawerListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, contents));
+
+        //drawerListView.setAdapter(new ArrayAdapter<String>(this, R.layout.nav_drawer_row_item, contents));
+       // drawerListView.setAdapter(new NavDrawerAdapter(this, R.layout.nav_drawer_row_item, items));
+        NavDrawerAdapter adapter = new NavDrawerAdapter(this);
+        drawerListView.setAdapter(adapter);
+        adapter.addItem("Login", R.drawable.ic_action_accounts);
+        adapter.addDivider();
+        adapter.addHeader("Retailers");
+        adapter.addItem("All", R.drawable.ic_action_view_as_grid);
+        adapter.addItem("Favorites", R.drawable.ic_action_favorite);
+        adapter.addItem("Nearby", R.drawable.ic_action_place);
+        adapter.addDivider();
+        adapter.addItem("Settings", R.drawable.ic_action_settings);
+        adapter.addItem("Help", R.drawable.ic_action_help);
+        adapter.addItem("About", R.drawable.ic_action_about);
+
 
     }
 
