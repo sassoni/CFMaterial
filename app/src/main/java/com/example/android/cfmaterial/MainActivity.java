@@ -5,14 +5,17 @@ import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
+import com.example.android.cfmaterial.retailer.RetailersFragment;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -43,6 +46,28 @@ public class MainActivity extends ActionBarActivity {
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerListView = (ListView) findViewById(R.id.drawer_listview);
 
+        drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Log.i("DRAWER", "pos: " + position+"");
+                switch (position) {
+                    case 3:
+                        RetailersFragment retailersFragment = RetailersFragment.newInstance();
+                        getSupportFragmentManager().beginTransaction()
+                                .add(R.id.activity_main_container, retailersFragment)
+                                .commit();
+                        break;
+                    default:
+                        break;
+                }
+                view.setSelected(true);
+                drawer.closeDrawers();
+            }
+
+           // drawerListView. setItemChecked(position, true);
+            //mDrawerLayout.closeDrawer(mDrawerList);
+        });
+
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
         drawer.setDrawerListener(drawerToggle);
@@ -61,6 +86,10 @@ public class MainActivity extends ActionBarActivity {
         adapter.addItem("Favorites", R.drawable.ic_action_favorite);
         adapter.addItem("Nearby", R.drawable.ic_action_place);
         adapter.addDivider();
+        adapter.addItem("Settings", R.drawable.ic_action_settings);
+        adapter.addItem("Settings", R.drawable.ic_action_settings);
+        adapter.addItem("Settings", R.drawable.ic_action_settings);
+        adapter.addItem("Settings", R.drawable.ic_action_settings);
         adapter.addItem("Settings", R.drawable.ic_action_settings);
         adapter.addItem("Help", R.drawable.ic_action_help);
         adapter.addItem("About", R.drawable.ic_action_about);

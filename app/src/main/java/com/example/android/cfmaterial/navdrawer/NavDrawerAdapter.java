@@ -31,11 +31,16 @@ public class NavDrawerAdapter extends ArrayAdapter<NavDrawerRow> {
     public View getView(int position, View convertView, ViewGroup parent) {
         View rowView;
         NavDrawerRow row = getItem(position);
+        // Header
         if (row instanceof NavDrawerRowHeader) {
             rowView = ((NavDrawerRowHeader) row).inflateView(context, parent);
-        } else if (row instanceof NavDrawerRowItem) {
+        }
+        // Item
+        else if (row instanceof NavDrawerRowItem) {
             rowView = ((NavDrawerRowItem) row).inflateView(context, parent);
-        } else {
+        }
+        // Divider
+        else {
             rowView = ((NavDrawerRowDivider) row).inflateView(context, parent);
         }
 
