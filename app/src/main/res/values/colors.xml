@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="primary" type="color">#D32F2F</item>
+    <item name="primary_dark" type="color">#F44336</item>
+    <item name="primary_light" type="color">#FFCDD2</item>
+
+    <item name="text" type="color">#FFFFFF</item>
+
+    <item name="accent" type="color">#9E9E9E</item>
+
+    <item name="primary_text" type="color">#212121</item>
+    <item name="secondary_text" type="color">#727272</item>
+
+    <item name="divider" type="color">#B6B6B6</item>
+
+</resources>
