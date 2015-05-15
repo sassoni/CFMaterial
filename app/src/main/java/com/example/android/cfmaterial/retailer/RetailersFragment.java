@@ -2,14 +2,17 @@ package com.example.android.cfmaterial.retailer;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 
 import com.example.android.cfmaterial.R;
 
@@ -24,10 +27,32 @@ import com.example.android.cfmaterial.R;
  */
 public class RetailersFragment extends Fragment {
 
-    private RecyclerView recyclerView;
-    private RecyclerView.Adapter adapter;
-    private RecyclerView.LayoutManager layoutManager;
+//    private RecyclerView recyclerView;
+//    private RecyclerView.Adapter adapter;
+//    private RecyclerView.LayoutManager layoutManager;
+    private GridView gridView;
+
     private Context context;
+
+    public class SpacesItemDecoration extends RecyclerView.ItemDecoration {
+        private int space;
+
+        public SpacesItemDecoration(int space) {
+            this.space = space;
+        }
+
+        @Override
+        public void getItemOffsets(Rect outRect, View view,
+                                   RecyclerView parent, RecyclerView.State state) {
+            outRect.left = space;
+            outRect.right = space;
+            outRect.bottom = space;
+
+            // Add top margin only for the first item to avoid double space between items
+            if(parent.getChildPosition(view) == 0)
+                outRect.top = space;
+        }
+    }
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -64,6 +89,7 @@ public class RetailersFragment extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        Log.i("RETAILERSFRAGMENT", "onCreate");
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -76,13 +102,21 @@ public class RetailersFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_retailers, container, false);
-        recyclerView = (RecyclerView) view.findViewById(R.id.fragment_retailers_recycler_view);
-        layoutManager = new GridLayoutManager(getActivity(), 2);
-        recyclerView.setLayoutManager(layoutManager);
+//        recyclerView = (RecyclerView) view.findViewById(R.id.fragment_retailers_recycler_view);
+//        layoutManager = new GridLayoutManager(getActivity(), 3);
+//        recyclerView.setLayoutManager(layoutManager);
+//
+//        // specify an adapter (see also next example)
+//        adapter = new RetailersRecyclerAdapter();
+//        recyclerView.setAdapter(adapter);
+//
+//        //int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.spacing);
+//        recyclerView.addItemDecoration(new SpacesItemDecoration(5));
 
-        // specify an adapter (see also next example)
-        adapter = new RetailersAdapter();
-        recyclerView.setAdapter(adapter);
+        gridView = (GridView) view.findViewById(R.id.fragment_retailers_gridview);
+        RetailersAdapter adapter = new RetailersAdapter(getActivity());
+        gridView.setAdapter(adapter);
+       // adapter.addData();
 
         return view;
     }

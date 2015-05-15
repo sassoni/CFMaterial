@@ -12,8 +12,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.example.android.cfmaterial.TabsFragments.RetailerOffers;
-import com.example.android.cfmaterial.TabsFragments.SavedOffers;
+import com.example.android.cfmaterial.tabsfragments.RetailerOffers;
+import com.example.android.cfmaterial.tabsfragments.SavedOffers;
 import com.example.android.cfmaterial.slidingtabs.SlidingTabLayout;
 
 

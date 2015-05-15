@@ -21,6 +21,8 @@ public class NavDrawerRowHeader extends NavDrawerRow {
         View view = inflater.inflate(R.layout.nav_drawer_row_header, parent, false);
         TextView textView = (TextView) view.findViewById(R.id.nav_drawer_row_header_text);
         textView.setText(title);
+        view.setEnabled(false);
+        view.setOnClickListener(null);
         return view;
     }
 }

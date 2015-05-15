@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:choiceMode="singleChoice"
             android:divider="@null"
-            android:listSelector="@color/divider">
+            >
 
         </ListView>
 

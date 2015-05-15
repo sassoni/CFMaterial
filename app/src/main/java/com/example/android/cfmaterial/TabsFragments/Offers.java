@@ -1,4 +1,4 @@
-package com.example.android.cfmaterial.TabsFragments;
+package com.example.android.cfmaterial.tabsfragments;
 
 import java.io.Serializable;
 

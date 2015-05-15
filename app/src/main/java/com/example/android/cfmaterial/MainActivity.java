@@ -50,18 +50,18 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Log.i("DRAWER", "pos: " + position+"");
+                view.setSelected(true);
+                drawer.closeDrawers();
                 switch (position) {
                     case 3:
                         RetailersFragment retailersFragment = RetailersFragment.newInstance();
                         getSupportFragmentManager().beginTransaction()
-                                .add(R.id.activity_main_container, retailersFragment)
+                                .replace(R.id.activity_main_container, retailersFragment)
                                 .commit();
                         break;
                     default:
                         break;
                 }
-                view.setSelected(true);
-                drawer.closeDrawers();
             }
 
            // drawerListView. setItemChecked(position, true);

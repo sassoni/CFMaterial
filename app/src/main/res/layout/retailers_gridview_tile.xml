@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#0000FF">
+
+    <com.example.android.cfmaterial.retailer.RetailerImageView
+        android:id="@+id/retailers_gridview_tile_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:src="@drawable/i_kroger"/>
+
+<!--    <View
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/retailers_gridview_tile_image"
+        android:alpha="0.6"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/retailers_gridview_tile_title"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignBottom="@+id/retailers_gridview_tile_image"
+        android:gravity="center"
+        android:textColor="@color/text"
+        android:textSize="16sp" />-->
+
+</RelativeLayout>

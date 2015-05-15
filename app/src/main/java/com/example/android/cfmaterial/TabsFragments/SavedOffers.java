@@ -1,4 +1,4 @@
-package com.example.android.cfmaterial.TabsFragments;
+package com.example.android.cfmaterial.tabsfragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
