@@ -69,10 +69,15 @@ public class MainActivity extends ActionBarActivity {
         });
 
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
+       // ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(
+                this,  drawer, toolbar,
+                R.string.navigation_drawer_open, R.string.navigation_drawer_close
+        );
         drawer.setDrawerListener(drawerToggle);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        drawerToggle.syncState();
 
 
         //drawerListView.setAdapter(new ArrayAdapter<String>(this, R.layout.nav_drawer_row_item, contents));
