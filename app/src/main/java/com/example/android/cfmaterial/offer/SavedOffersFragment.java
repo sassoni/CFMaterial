@@ -1,4 +1,4 @@
-package com.example.android.cfmaterial.tabsfragments;
+package com.example.android.cfmaterial.offer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,20 +8,20 @@ import android.view.ViewGroup;
 
 import com.example.android.cfmaterial.R;
 
-
-/**
- * Created by ravatapa on 5/6/2015.
- */
-public class SavedOffers extends Fragment {
+public class SavedOffersFragment extends Fragment {
 
     public static final String PARAM1 = "param1";
 
-    public static SavedOffers newInstance(String param1){
-        SavedOffers savedOffers = new SavedOffers();
+    public static SavedOffersFragment newInstance(String param1) {
+        SavedOffersFragment savedOffersFragment = new SavedOffersFragment();
         Bundle bundle = new Bundle();
         bundle.putString(PARAM1, param1);
-        savedOffers.setArguments(bundle);
-        return savedOffers;
+        savedOffersFragment.setArguments(bundle);
+        return savedOffersFragment;
+    }
+
+    public SavedOffersFragment() {
+
     }
 
     @Override
@@ -31,7 +31,7 @@ public class SavedOffers extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.saved_offers, container, false);
+        View view = inflater.inflate(R.layout.fragment_saved_offers, container, false);
         return view;
     }
 }

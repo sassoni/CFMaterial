@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
+import com.example.android.cfmaterial.offer.OffersTabsFragment;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.retailer.RetailersFragment;
 
@@ -91,7 +92,11 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
 
     @Override
     public void onRetailerClicked(Retailer retailer) {
-
+        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance();
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_container, offersTabsFragment)
+                .addToBackStack(null)
+                .commit();
     }
 
     // ---------- Aux ---------- //

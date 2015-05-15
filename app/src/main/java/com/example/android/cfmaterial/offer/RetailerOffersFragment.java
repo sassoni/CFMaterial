@@ -1,4 +1,4 @@
-package com.example.android.cfmaterial.tabsfragments;
+package com.example.android.cfmaterial.offer;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +9,9 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.R;
+import com.example.android.cfmaterial.tabsfragments.Offers;
+import com.example.android.cfmaterial.tabsfragments.OffersAdapter;
+import com.example.android.cfmaterial.tabsfragments.OffersGridAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -17,10 +20,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by ravatapa on 5/6/2015.
- */
-public class RetailerOffers extends Fragment implements OffersAdapter.OffersGridEventListener{
+public class RetailerOffersFragment extends Fragment implements OffersAdapter.OffersGridEventListener {
 
     private static final String PARAM1 = "param1";
     private GridView gridView;
@@ -30,12 +30,16 @@ public class RetailerOffers extends Fragment implements OffersAdapter.OffersGrid
     private ListView listView;
     private OffersAdapter offersAdapter;
 
-    public static RetailerOffers newInstance(String param1){
-        RetailerOffers retailerOffers = new RetailerOffers();
+    public static RetailerOffersFragment newInstance(String param1) {
+        RetailerOffersFragment retailerOffersFragment = new RetailerOffersFragment();
         Bundle bundle = new Bundle();
         bundle.putString(PARAM1, param1);
-        retailerOffers.setArguments(bundle);
-        return retailerOffers;
+        retailerOffersFragment.setArguments(bundle);
+        return retailerOffersFragment;
+    }
+
+    public RetailerOffersFragment() {
+
     }
 
     @Override
@@ -45,7 +49,7 @@ public class RetailerOffers extends Fragment implements OffersAdapter.OffersGrid
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.retailer_offers, container, false);
+        View view = inflater.inflate(R.layout.fragment_retailer_offers, container, false);
 
         loadOffersList(getString(R.string.offer_data_json));
 
@@ -54,7 +58,7 @@ public class RetailerOffers extends Fragment implements OffersAdapter.OffersGrid
         gridView.setAdapter(offersGridAdapter);*/
 
         listView = (ListView) view.findViewById(R.id.offer_listview);
-        offersAdapter = new OffersAdapter(getActivity(), offersList, RetailerOffers.this);
+        offersAdapter = new OffersAdapter(getActivity(), offersList, RetailerOffersFragment.this);
         listView.setAdapter(offersAdapter);
 
         return view;

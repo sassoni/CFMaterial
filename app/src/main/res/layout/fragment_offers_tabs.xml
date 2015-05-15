@@ -1,18 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/activity_main_checkout"
-        android:background="@color/primary"
-        android:minHeight="?android:attr/actionBarSize" />
+    android:orientation="vertical">
 
     <com.example.android.cfmaterial.slidingtabs.SlidingTabLayout
         android:id="@+id/sliding_tabs"
