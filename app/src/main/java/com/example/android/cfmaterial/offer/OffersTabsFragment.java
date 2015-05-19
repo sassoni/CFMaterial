@@ -1,14 +1,9 @@
 package com.example.android.cfmaterial.offer;
 
-import android.app.Activity;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,37 +14,20 @@ import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
 import com.example.android.cfmaterial.TabsViewPagerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
+import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.slidingtabs.SlidingTabLayout;
 
 public class OffersTabsFragment extends NavigationDrawerFragment {
 
-    private ViewPager viewPager;
-    private TabsViewPagerAdapter tabsViewPagerAdapter;
-    // private SavedOffersFragment savedOffersFragment;
-    // private RetailerOffersFragment retailerOffersFragment;
-   // private SlidingTabLayout slidingTabLayout;
+    private static final String RETAILER_KEY = "retailer_key";
 
-//    private Toolbar toolbar;
-//    private DrawerLayout drawerLayout;
-//    private ActionBarDrawerToggle actionBarDrawerToggle;
+    private Retailer retailer;
 
-/*    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";*/
-
-/*    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;*/
-
-    private OnFragmentInteractionListener mListener;
-
-    public static OffersTabsFragment newInstance(/*String param1, String param2*/) {
+    public static OffersTabsFragment newInstance(Retailer retailer) {
         OffersTabsFragment fragment = new OffersTabsFragment();
-/*        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putParcelable(RETAILER_KEY, retailer);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -59,23 +37,20 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i("OFFERSTABSFRAGMENT", "onCreate");
-/*        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        if (getArguments() != null) {
+            retailer = getArguments().getParcelable(RETAILER_KEY);
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("OFFERSTABSFRAGMENT", "onCreateView");
 
         View view = inflater.inflate(R.layout.fragment_offers_tabs, container, false);
 
-        tabsViewPagerAdapter = new TabsViewPagerAdapter(getChildFragmentManager());
+        TabsViewPagerAdapter tabsViewPagerAdapter = new TabsViewPagerAdapter(getChildFragmentManager());
 
-        viewPager = (ViewPager) view.findViewById(R.id.fragment_offers_tabs_view_pager);
+        ViewPager viewPager = (ViewPager) view.findViewById(R.id.fragment_offers_tabs_view_pager);
         viewPager.setAdapter(tabsViewPagerAdapter);
 
         SlidingTabLayout slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.fragment_offers_tabs_sliding_tabs);
@@ -96,39 +71,11 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-/*        try {
-            mListener = (OnFragmentInteractionListener) activity;
-        } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }*/
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
-    }
-
-//    @Override
-//    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-//        super.onActivityCreated(savedInstanceState);
-//        setupNavigationDrawer();
-//    }
-
-    @Override
     public void setupNavigationDrawer() {
         NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity());
         adapter.addItem("Login", R.drawable.ic_action_accounts);
         adapter.addDivider();
-        adapter.addHeader("A name");
+        adapter.addHeader(retailer.getName());
         adapter.addItem("Offers", R.drawable.ic_action_view_as_list);
         adapter.addItem("Card", R.drawable.ic_action_labels);
         adapter.addItem("Stores", R.drawable.ic_action_make_available_offline);
@@ -163,9 +110,6 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
                         break;
                 }
             }
-
-            // drawerListView. setItemChecked(position, true);
-            //mDrawerLayout.closeDrawer(mDrawerList);
         });
         drawerListView.setAdapter(adapter);
     }

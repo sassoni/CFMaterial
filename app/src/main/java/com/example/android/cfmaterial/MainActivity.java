@@ -74,7 +74,7 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
 
     @Override
     public void onRetailerClicked(Retailer retailer) {
-        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance();
+        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance(retailer);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, offersTabsFragment)
                 .addToBackStack(null)

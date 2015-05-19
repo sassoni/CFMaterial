@@ -3,7 +3,6 @@ package com.example.android.cfmaterial.retailer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,14 +18,20 @@ import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 
 public class RetailersFragment extends NavigationDrawerFragment {
 
-    NavDrawerItemClickedListener navDrawerItemClickedListener;
-    public static final String MODE_KEY = "mode_key";
+    private static final String MODE_KEY = "mode_key";
 
+    public interface OnRetailerClickedListener {
+        public void onRetailerClicked(Retailer retailer);
+    }
+
+    private OnRetailerClickedListener retailerClickedListener;
+    private NavDrawerItemClickedListener navDrawerItemClickedListener;
+
+    // Mode: All, favorites or nearby
     public enum Mode {
         ALL, NEARBY, FAVORITES
     }
-
-    private Mode mode;
+    private Mode mode = Mode.ALL;
 
     private Retailer[] allRetailers = new Retailer[]{
             new Retailer("A&P", R.drawable.i_aandp),
@@ -57,12 +62,6 @@ public class RetailersFragment extends NavigationDrawerFragment {
     };
 
     Retailer[] retailers = allRetailers;
-
-    public interface OnRetailerClickedListener {
-        public void onRetailerClicked(Retailer retailer);
-    }
-
-    private OnRetailerClickedListener listener;
 
     public static RetailersFragment newInstance(Mode mode) {
         RetailersFragment fragment = new RetailersFragment();
@@ -106,8 +105,8 @@ public class RetailersFragment extends NavigationDrawerFragment {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (listener != null) {
-                    listener.onRetailerClicked(retailers[position]);
+                if (retailerClickedListener != null) {
+                    retailerClickedListener.onRetailerClicked(retailers[position]);
                 }
             }
         });
@@ -119,18 +118,18 @@ public class RetailersFragment extends NavigationDrawerFragment {
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            listener = (OnRetailerClickedListener) activity;
+            retailerClickedListener = (OnRetailerClickedListener) activity;
             navDrawerItemClickedListener = (NavDrawerItemClickedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
-                    + " must implement OnRetailerClickedListener");
+                    + " must implement listeners");
         }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-        listener = null;
+        retailerClickedListener = null;
         navDrawerItemClickedListener = null;
     }
 
@@ -150,6 +149,19 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
         ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
         final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+
+        // Not working
+//        switch (mode) {
+//            case ALL:
+//                drawerListView. setItemChecked(3, true);
+//                break;
+//            case FAVORITES:
+//                drawerListView. setItemChecked(4, true);
+//                break;
+//            case NEARBY:
+//                drawerListView. setItemChecked(5, true);
+//                break;
+//        }
 
         drawerListView.setOnItemClickListener(null);
         drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
@@ -188,7 +200,6 @@ public class RetailersFragment extends NavigationDrawerFragment {
             }
 
             // drawerListView. setItemChecked(position, true);
-            //mDrawerLayout.closeDrawer(mDrawerList);
         });
         drawerListView.setAdapter(adapter);
     }
