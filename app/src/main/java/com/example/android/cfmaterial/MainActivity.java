@@ -39,10 +39,13 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
                 drawer.closeDrawers();
                 switch (position) {
                     case 3:
-                        RetailersFragment retailersFragment = RetailersFragment.newInstance();
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.activity_main_container, retailersFragment)
-                                .commit();
+                        showRetailersFragment(RetailersFragment.Mode.ALL);
+                        break;
+                    case 4:
+                        showRetailersFragment(RetailersFragment.Mode.FAVORITES);
+                        break;
+                    case 5:
+                        showRetailersFragment(RetailersFragment.Mode.NEARBY);
                         break;
                     default:
                         break;
@@ -62,6 +65,13 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
 
         NavDrawerAdapter adapter = setupNavDrawerAdapter();
         drawerListView.setAdapter(adapter);
+
+        if (savedInstanceState == null) {
+            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.ALL);
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.activity_main_container, retailersFragment)
+                    .commit();
+        }
     }
 
     // ---------- Menu ---------- //
@@ -114,5 +124,12 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
         adapter.addItem("Help", R.drawable.ic_action_help);
         adapter.addItem("About", R.drawable.ic_action_about);
         return adapter;
+    }
+
+    private void showRetailersFragment(RetailersFragment.Mode mode) {
+        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_container, retailersFragment)
+                .commit();
     }
 }
