@@ -11,8 +11,6 @@
     <string name="action_example">Example action</string>
 
     <string name="action_settings">Settings</string>
-
-<!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Clip Button String-->
@@ -25,115 +23,153 @@
         \"offerId\": 0,
         \"description\": \"All Natural Eggs Grade-A\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 25¢\"
+        \"heading\": \"Save 25¢\",
+        \"detailDescription\": \"Save 25¢ when you buy ONE All Natural Eggs Grade-A\",
+        \"terms\": \"25¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 1,
         \"description\": \"Breakstone\'s Cottage Cheese Doubles\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 50¢\"
+        \"heading\": \"Save 50¢\",
+        \"detailDescription\": \"Save 50¢ when you buy ONE Breakstone\'s Cottage Cheese Doubles\",
+        \"terms\": \"50¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 2,
         \"description\": \"General Mills Cheerios Strawberry\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 50¢\"
+        \"heading\": \"Save 50¢\",
+        \"detailDescription\": \"Save 50¢ when you buy ONE General Mills Cheerios Strawberry\",
+        \"terms\": \"50¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 3,
         \"description\": \"Pair of Chi Chis\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save $1.00\"
+        \"heading\": \"Save $1.00\",
+        \"detailDescription\": \"Save $1.00 when you buy ONE Pair of Chi Chis\",
+        \"terms\": \"$1.00 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 4,
         \"description\": \"Chobani Greek Yogurt\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 75¢\"
+        \"heading\": \"Save 75¢\",
+        \"detailDescription\": \"Save 75¢ when you buy ONE Chobani Greek Yogurt\",
+        \"terms\": \"75¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 5,
         \"description\": \"Pair of Florida Naturals\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save $1.00\"
+        \"heading\": \"Save $1.00\",
+        \"detailDescription\": \"Save $1.00 when you buy ONE Pair of Florida Naturals\",
+        \"terms\": \"$1.00 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 6,
         \"description\": \"Pack of three General Mills Cheerios\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save $1.50\"
+        \"heading\": \"Save $1.50\",
+        \"detailDescription\": \"Save $1.50 when you buy ONE Pack of three General Mills Cheerios\",
+        \"terms\": \"$1.50 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 7,
         \"description\": \"Gerber Oranges\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 40¢\"
+        \"heading\": \"Save 40¢\",
+        \"detailDescription\": \"Save 25¢ when you buy ONE Gerber Oranges\",
+        \"terms\": \"40¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 8,
         \"description\": \"Glade Expression\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 75¢\"
+        \"heading\": \"Save 75¢\",
+        \"detailDescription\": \"Save 75¢ when you buy ONE Glade Expression\",
+        \"terms\": \"75¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 9,
         \"description\": \"High Performance Detergent\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 50¢\"
+        \"heading\": \"Save 50¢\",
+        \"detailDescription\": \"Save 50¢ when you buy ONE High Performance Detergent\",
+        \"terms\": \"50¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 10,
         \"description\": \"Lobster and Seafood\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save $1.25\"
+        \"heading\": \"Save $1.25\",
+        \"detailDescription\": \"Save $1.25 when you buy ONE Lobster and Seafood\",
+        \"terms\": \"$1.25 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 11,
         \"description\": \"Goldfish Mac and Cheese 3 pac\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"One Free\"
+        \"heading\": \"One Free\",
+        \"detailDescription\": \"Save One Free when you buy ONE Goldfish Mac and Cheese 3 pac\",
+        \"terms\": \"One Free Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 12,
         \"description\": \"Minute Maide Lemonade\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 25¢\"
+        \"heading\": \"Save 25¢\",
+        \"detailDescription\": \"Save 25¢ when you buy ONE Minute Maide Lemonade\",
+        \"terms\": \"25¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 13,
         \"description\": \"Peperage Farms Wheat Bread\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 25¢\"
+        \"heading\": \"Save 25¢\",
+        \"detailDescription\": \"Save 25¢ when you buy ONE Peperage Farms Wheat Bread\",
+        \"terms\": \"25¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 14,
         \"description\": \"Perdue Chicken\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 50¢\"
+        \"heading\": \"Save 50¢\",
+        \"detailDescription\": \"Save 50¢ when you buy ONE Perdue Chicken\",
+        \"terms\": \"50¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 15,
         \"description\": \"Puffs Plus Lotion\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 75¢\"
+        \"heading\": \"Save 75¢\",
+        \"detailDescription\": \"Save 75¢ when you buy ONE Puffs Plus Lotion\",
+        \"terms\": \"75¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 16,
         \"description\": \"Scott 12 Rolls\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save $1.00\"
+        \"heading\": \"Save $1.00\",
+        \"detailDescription\": \"Save $1.00 when you buy ONE Scott 12 Rolls\",
+        \"terms\": \"$1.00 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 17,
         \"description\": \"Cranberry Juice\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Save 25¢\"
+        \"heading\": \"Save 25¢\",
+        \"detailDescription\": \"Save 25¢ when you buy ONE Cranberry Juice\",
+        \"terms\": \"25¢ Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     },
     {
         \"offerId\": 18,
         \"description\": \"Kellogs Special Pack\",
         \"expiration\": \"Expires May 31,2015\",
-        \"heading\": \"Buy 3 Get 1\"
+        \"heading\": \"Buy 3 Get 1\",
+        \"detailDescription\": \"Save Buy 3 Get 1 when you buy ONE Kellogs Special Pack\",
+        \"terms\": \"Buy 3 Get 1 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     }
 ]</string>
 

@@ -12,6 +12,8 @@ public class Offers implements Serializable {
     private int id;
     private String heading;
     private String description;
+    private String detailDescription;
+    private String terms;
     private String expiration;
     private boolean isClipped = false;
 
@@ -55,4 +57,21 @@ public class Offers implements Serializable {
         this.isClipped = isClipped;
     }
 
+    public String getDetailDescription() {
+        return detailDescription;
+    }
+
+    public void setDetailDescription(String detailDescription) {
+        this.detailDescription = detailDescription;
+    }
+
+    public String getTerms() {
+        return terms;
+    }
+
+    public void setTerms(String terms) {
+        this.terms = terms;
+    }
 }
+
+

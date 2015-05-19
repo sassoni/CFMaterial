@@ -60,8 +60,17 @@
         android:layout_alignBottom="@+id/offer_layout_offer_image"
         android:layout_below="@+id/offer_layout_offer_expiration"
         android:layout_toRightOf="@+id/offer_layout_offer_image"
-        android:layout_alignParentRight="true"
+        android:layout_toLeftOf="@+id/offer_expand"
         android:gravity="center_vertical|right"
         android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/offer_expand"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignBaseline="@id/offer_clip"
+        android:background="@drawable/ic_action_expand"/>
 
 </RelativeLayout>

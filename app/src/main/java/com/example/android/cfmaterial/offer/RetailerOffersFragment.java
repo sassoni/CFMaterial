@@ -5,13 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
-import android.widget.ListView;
 
 import com.example.android.cfmaterial.R;
+import com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView;
 import com.example.android.cfmaterial.tabsfragments.Offers;
-import com.example.android.cfmaterial.tabsfragments.OffersAdapter;
-import com.example.android.cfmaterial.tabsfragments.OffersGridAdapter;
+import com.example.android.cfmaterial.tabsfragments.OffersExpandableAdapter;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,15 +18,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RetailerOffersFragment extends Fragment implements OffersAdapter.OffersGridEventListener {
+public class RetailerOffersFragment extends Fragment implements OffersExpandableAdapter.OffersGridEventListener {
 
     private static final String PARAM1 = "param1";
-    private GridView gridView;
-    private OffersGridAdapter offersGridAdapter;
     private List<Offers> offersList;
 
-    private ListView listView;
-    private OffersAdapter offersAdapter;
+    private AnimatedExpandableListView expandableListView;
+    private OffersExpandableAdapter offersExpandableAdapter;
 
     public static RetailerOffersFragment newInstance(String param1) {
         RetailerOffersFragment retailerOffersFragment = new RetailerOffersFragment();
@@ -53,19 +49,24 @@ public class RetailerOffersFragment extends Fragment implements OffersAdapter.Of
 
         loadOffersList(getString(R.string.offer_data_json));
 
-        /*gridView = (GridView) view.findViewById(R.id.offer_fragment_gridview);
-        offersGridAdapter = new OffersGridAdapter(getActivity(), offersList, RetailerOffers.this);
-        gridView.setAdapter(offersGridAdapter);*/
-
-        listView = (ListView) view.findViewById(R.id.offer_listview);
-        offersAdapter = new OffersAdapter(getActivity(), offersList, RetailerOffersFragment.this);
-        listView.setAdapter(offersAdapter);
-
+        expandableListView = (AnimatedExpandableListView) view.findViewById(R.id.offer_listview);
+        offersExpandableAdapter = new OffersExpandableAdapter(getActivity(), offersList, RetailerOffersFragment.this);
+        expandableListView.setAdapter(offersExpandableAdapter);
+        expandableListView.setGroupIndicator(null);
         return view;
     }
 
     @Override
-    public void offerClipped() {
+    public void onOfferExpand(int groupPosition) {
+        if (expandableListView.isGroupExpanded(groupPosition)){
+            expandableListView.collapseGroupWithAnimation(groupPosition);
+        }else {
+            expandableListView.expandGroupWithAnimation(groupPosition);
+        }
+    }
+
+    @Override
+    public void offerClipped(int groupPosition) {
 
     }
 
@@ -82,6 +83,8 @@ public class RetailerOffersFragment extends Fragment implements OffersAdapter.Of
                 offers.setExpiration(jsonObject.getString("expiration"));
                 offers.setHeading(jsonObject.getString("heading"));
                 offers.setId(jsonObject.getInt("offerId"));
+                offers.setDetailDescription(jsonObject.getString("detailDescription"));
+                offers.setTerms(jsonObject.getString("terms"));
                 offersList.add(offers);
             }
 
