@@ -5,13 +5,13 @@
     android:orientation="vertical">
 
     <com.example.android.cfmaterial.slidingtabs.SlidingTabLayout
-        android:id="@+id/sliding_tabs"
+        android:id="@+id/fragment_offers_tabs_sliding_tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/primary" />
 
     <android.support.v4.view.ViewPager
-        android:id="@+id/view_pager"
+        android:id="@+id/fragment_offers_tabs_view_pager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1" />

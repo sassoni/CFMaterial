@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +58,7 @@ public class OffersAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
 
         final ViewHolder viewHolder;
-
+Log.i("OFFERSADAPTER", "view");
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(R.layout.offers_layout_list, null, false);

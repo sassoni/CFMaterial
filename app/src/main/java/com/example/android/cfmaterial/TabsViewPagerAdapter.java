@@ -3,32 +3,39 @@ package com.example.android.cfmaterial;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.util.Log;
+
+import com.example.android.cfmaterial.offer.RetailerOffersFragment;
+import com.example.android.cfmaterial.offer.SavedOffersFragment;
 
 public class TabsViewPagerAdapter extends FragmentPagerAdapter {
 
-    private final int COUNT;
-    private final String[] fragmentsTitles;
-    private final Fragment[] fragments;
+    String[] tabNames = new String[]{"RETAILER OFFERS", "SAVED OFFERS"};
 
-    public TabsViewPagerAdapter(FragmentManager fm, int COUNT, String[] fragmentsTitles, Fragment[] fragments) {
+    public TabsViewPagerAdapter(FragmentManager fm) {
         super(fm);
-        this.COUNT = COUNT;
-        this.fragmentsTitles = fragmentsTitles;
-        this.fragments = fragments;
+        Log.i("TABSADAPTER", "constructor");
     }
 
     @Override
     public Fragment getItem(int position) {
-        return fragments[position];
+        switch (position) {
+            case 0:
+                return RetailerOffersFragment.newInstance("e");
+            case 1:
+                return SavedOffersFragment.newInstance("e");
+            default:
+                return null;
+        }
     }
 
     @Override
     public CharSequence getPageTitle(int position) {
-        return fragmentsTitles[position];
+        return tabNames[position];
     }
 
     @Override
     public int getCount() {
-        return COUNT;
+        return 2;
     }
 }

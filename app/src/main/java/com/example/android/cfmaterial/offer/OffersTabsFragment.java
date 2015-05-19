@@ -19,9 +19,9 @@ public class OffersTabsFragment extends Fragment {
 
     private ViewPager viewPager;
     private TabsViewPagerAdapter tabsViewPagerAdapter;
-    private SavedOffersFragment savedOffersFragment;
-    private RetailerOffersFragment retailerOffersFragment;
-    private SlidingTabLayout slidingTabLayout;
+    // private SavedOffersFragment savedOffersFragment;
+    // private RetailerOffersFragment retailerOffersFragment;
+   // private SlidingTabLayout slidingTabLayout;
 
 //    private Toolbar toolbar;
 //    private DrawerLayout drawerLayout;
@@ -53,6 +53,7 @@ public class OffersTabsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.i("OFFERSTABSFRAGMENT", "onCreate");
 /*        if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -62,23 +63,16 @@ public class OffersTabsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        Log.i("OFFERSFRAGMENT", "onCreateView");
-       View view = inflater.inflate(R.layout.fragment_offers_tabs, container, false);
+        Log.i("OFFERSTABSFRAGMENT", "onCreateView");
 
-        viewPager = (ViewPager) view.findViewById(R.id.view_pager);
+        View view = inflater.inflate(R.layout.fragment_offers_tabs, container, false);
 
-        savedOffersFragment = SavedOffersFragment.newInstance("one");
-        retailerOffersFragment = RetailerOffersFragment.newInstance("two");
+        tabsViewPagerAdapter = new TabsViewPagerAdapter(getChildFragmentManager());
 
-        String[] tabNames = new String[]{"RETAILER OFFERS","SAVED OFFERS"};
-        Fragment[] fragments = new Fragment[2];
-        fragments[0] = retailerOffersFragment;
-        fragments[1] = savedOffersFragment;
-
-        tabsViewPagerAdapter = new TabsViewPagerAdapter(getActivity().getSupportFragmentManager(), 2,tabNames,fragments);
+        viewPager = (ViewPager) view.findViewById(R.id.fragment_offers_tabs_view_pager);
         viewPager.setAdapter(tabsViewPagerAdapter);
 
-        slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.sliding_tabs);
+        SlidingTabLayout slidingTabLayout = (SlidingTabLayout) view.findViewById(R.id.fragment_offers_tabs_sliding_tabs);
         slidingTabLayout.setViewPager(viewPager);
         slidingTabLayout.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
             @Override
