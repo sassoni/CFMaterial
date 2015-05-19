@@ -23,7 +23,7 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="304dp"
         android:layout_height="match_parent"
         android:layout_gravity="left|start"
@@ -32,20 +32,28 @@
         android:orientation="vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="150dp"
-            android:background="@drawable/gray_pattern" />
+            android:id="@+id/drawer_background"
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:background="@drawable/gray_geometric" />
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/circle" />
 
         <ListView
             android:id="@+id/drawer_listview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/drawer_background"
             android:choiceMode="singleChoice"
-            android:divider="@null"
-            >
+            android:divider="@null">
 
         </ListView>
 
-    </LinearLayout>
+    </RelativeLayout>
 
 </android.support.v4.widget.DrawerLayout>
