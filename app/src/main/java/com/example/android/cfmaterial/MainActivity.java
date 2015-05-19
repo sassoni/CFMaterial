@@ -5,17 +5,15 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
+import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 import com.example.android.cfmaterial.offer.OffersTabsFragment;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.retailer.RetailersFragment;
 
 
-public class MainActivity extends ActionBarActivity implements RetailersFragment.OnRetailerClickedListener {
+public class MainActivity extends ActionBarActivity implements RetailersFragment.OnRetailerClickedListener, NavDrawerItemClickedListener {
 
     private Toolbar toolbar;
     private DrawerLayout drawer;
@@ -32,30 +30,6 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerListView = (ListView) findViewById(R.id.drawer_listview);
 
-        drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setSelected(true);
-                drawer.closeDrawers();
-                switch (position) {
-                    case 3:
-                        showRetailersFragment(RetailersFragment.Mode.ALL);
-                        break;
-                    case 4:
-                        showRetailersFragment(RetailersFragment.Mode.FAVORITES);
-                        break;
-                    case 5:
-                        showRetailersFragment(RetailersFragment.Mode.NEARBY);
-                        break;
-                    default:
-                        break;
-                }
-            }
-
-            // drawerListView. setItemChecked(position, true);
-            //mDrawerLayout.closeDrawer(mDrawerList);
-        });
-
         setSupportActionBar(toolbar);
         ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
         drawer.setDrawerListener(drawerToggle);
@@ -63,10 +37,8 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
         getSupportActionBar().setHomeButtonEnabled(true);
         drawerToggle.syncState();
 
-        NavDrawerAdapter adapter = setupNavDrawerAdapter();
-        drawerListView.setAdapter(adapter);
-
         if (savedInstanceState == null) {
+            drawerListView.setItemChecked(3, true);
             RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.ALL);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_container, retailersFragment)
@@ -111,25 +83,25 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
 
     // ---------- Aux ---------- //
 
-    private NavDrawerAdapter setupNavDrawerAdapter() {
-        NavDrawerAdapter adapter = new NavDrawerAdapter(this);
-        adapter.addItem("Login", R.drawable.ic_action_accounts);
-        adapter.addDivider();
-        adapter.addHeader("Retailers");
-        adapter.addItem("All", R.drawable.ic_action_view_as_grid);
-        adapter.addItem("Favorites", R.drawable.ic_action_favorite);
-        adapter.addItem("Nearby", R.drawable.ic_action_place);
-        adapter.addDivider();
-        adapter.addItem("Settings", R.drawable.ic_action_settings);
-        adapter.addItem("Help", R.drawable.ic_action_help);
-        adapter.addItem("About", R.drawable.ic_action_about);
-        return adapter;
-    }
-
     private void showRetailersFragment(RetailersFragment.Mode mode) {
         RetailersFragment retailersFragment = RetailersFragment.newInstance(mode);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, retailersFragment)
                 .commit();
+    }
+
+    @Override
+    public void onNavDrawerItemClicked(NavDrawerItem item) {
+        switch (item) {
+            case RET_ALL:
+                showRetailersFragment(RetailersFragment.Mode.ALL);
+                break;
+            case RET_FAV:
+                showRetailersFragment(RetailersFragment.Mode.FAVORITES);
+                break;
+            case RET_NEAR:
+                showRetailersFragment(RetailersFragment.Mode.NEARBY);
+                break;
+        }
     }
 }
