@@ -244,7 +244,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                 toolbar.setTitle("All retailers");
                 break;
             case FAVORITES:
-                toolbar.setTitle("My retailers");
+                toolbar.setTitle("Favorite retailers");
                 break;
             case NEARBY:
                 toolbar.setTitle("Nearby retailers");
