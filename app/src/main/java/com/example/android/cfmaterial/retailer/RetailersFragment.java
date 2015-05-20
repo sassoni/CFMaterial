@@ -177,31 +177,18 @@ public class RetailersFragment extends NavigationDrawerFragment {
         adapter.addItem("Help", R.drawable.ic_action_help);
         adapter.addItem("About", R.drawable.ic_action_about);
 
-        ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
+        final ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
         final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
         ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
         ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
 
         smallLogo.setVisibility(View.GONE);
         largeLogo.setImageResource(R.drawable.circle);
-        // Not working
-//        switch (mode) {
-//            case ALL:
-//                drawerListView. setItemChecked(3, true);
-//                break;
-//            case FAVORITES:
-//                drawerListView. setItemChecked(4, true);
-//                break;
-//            case NEARBY:
-//                drawerListView. setItemChecked(5, true);
-//                break;
-//        }
 
         drawerListView.setOnItemClickListener(null);
         drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setSelected(true);
                 drawer.closeDrawers();
                 switch (position) {
                     case 0:
@@ -232,10 +219,20 @@ public class RetailersFragment extends NavigationDrawerFragment {
                         break;
                 }
             }
-
-            // drawerListView. setItemChecked(position, true);
         });
         drawerListView.setAdapter(adapter);
+
+        switch (mode) {
+            case ALL:
+                drawerListView. setItemChecked(3, true);
+                break;
+            case FAVORITES:
+                drawerListView. setItemChecked(4, true);
+                break;
+            case NEARBY:
+                drawerListView. setItemChecked(5, true);
+                break;
+        }
     }
 
     public class LoadingAsyncTask extends AsyncTask<Void, Void, Void> {

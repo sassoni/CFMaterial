@@ -40,8 +40,8 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
         drawerToggle.syncState();
 
         if (savedInstanceState == null) {
-            drawerListView.setItemChecked(3, true);
-            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.ALL, true);
+            //drawerListView.setItemChecked(3, true);
+            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_container, retailersFragment)
                     .commit();
