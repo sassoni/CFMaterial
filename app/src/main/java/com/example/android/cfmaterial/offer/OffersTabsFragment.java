@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.NavigationDrawerFragment;
@@ -92,6 +93,13 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
 
         ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
         final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+
+        ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
+        ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
+
+        smallLogo.setVisibility(View.VISIBLE);
+        smallLogo.setImageResource(R.drawable.circle);
+        largeLogo.setImageResource(retailer.getDrawableId());
 
         drawerListView.setOnItemClickListener(null);
         drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {

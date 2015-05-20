@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.NavigationDrawerFragment;
@@ -149,7 +150,11 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
         ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
         final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+        ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
+        ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
 
+        smallLogo.setVisibility(View.GONE);
+        largeLogo.setImageResource(R.drawable.circle);
         // Not working
 //        switch (mode) {
 //            case ALL:
