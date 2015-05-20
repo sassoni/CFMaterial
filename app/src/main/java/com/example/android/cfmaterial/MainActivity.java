@@ -39,7 +39,7 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
 
         if (savedInstanceState == null) {
             drawerListView.setItemChecked(3, true);
-            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.ALL);
+            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.ALL, true);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_container, retailersFragment)
                     .commit();
@@ -84,7 +84,7 @@ public class MainActivity extends ActionBarActivity implements RetailersFragment
     // ---------- Aux ---------- //
 
     private void showRetailersFragment(RetailersFragment.Mode mode) {
-        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode);
+        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, retailersFragment)
                 .commit();

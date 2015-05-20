@@ -1,6 +1,8 @@
 package com.example.android.cfmaterial.retailer;
 
 import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -10,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
@@ -20,6 +24,12 @@ import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 public class RetailersFragment extends NavigationDrawerFragment {
 
     private static final String MODE_KEY = "mode_key";
+    private static final String SHOW_LOADING_KEY = "show_loading_key";
+
+    // Mode: All, favorites or nearby
+    public enum Mode {
+        ALL, NEARBY, FAVORITES
+    }
 
     public interface OnRetailerClickedListener {
         public void onRetailerClicked(Retailer retailer);
@@ -28,11 +38,14 @@ public class RetailersFragment extends NavigationDrawerFragment {
     private OnRetailerClickedListener retailerClickedListener;
     private NavDrawerItemClickedListener navDrawerItemClickedListener;
 
-    // Mode: All, favorites or nearby
-    public enum Mode {
-        ALL, NEARBY, FAVORITES
-    }
     private Mode mode = Mode.ALL;
+    private boolean showLoading = false;
+
+    private GridView gridView;
+    private LinearLayout progressLayout;
+    private ImageView progressBar;
+    private TextView progressText;
+    private AnimationDrawable loadingAnimation;
 
     private Retailer[] allRetailers = new Retailer[]{
             new Retailer("A&P", R.drawable.i_aandp),
@@ -64,10 +77,11 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
     Retailer[] retailers = allRetailers;
 
-    public static RetailersFragment newInstance(Mode mode) {
+    public static RetailersFragment newInstance(Mode mode, boolean showLoading) {
         RetailersFragment fragment = new RetailersFragment();
         Bundle args = new Bundle();
         args.putSerializable(MODE_KEY, mode);
+        args.putBoolean(SHOW_LOADING_KEY, showLoading);
         fragment.setArguments(args);
         return fragment;
     }
@@ -91,6 +105,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                     retailers = favoriteRetailers;
                     break;
             }
+            showLoading = getArguments().getBoolean(SHOW_LOADING_KEY);
         }
     }
 
@@ -101,7 +116,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
         RetailersAdapter adapter = new RetailersAdapter(getActivity(), retailers);
 
-        GridView gridView = (GridView) view.findViewById(R.id.fragment_retailers_gridview);
+        gridView = (GridView) view.findViewById(R.id.fragment_retailers_gridview);
         gridView.setAdapter(adapter);
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -111,6 +126,19 @@ public class RetailersFragment extends NavigationDrawerFragment {
                 }
             }
         });
+
+        progressLayout = (LinearLayout) view.findViewById(R.id.fragment_retailers_progress_layout);
+        progressBar = (ImageView) view.findViewById(R.id.fragment_retailers_progress_bar);
+        progressText = (TextView) view.findViewById(R.id.fragment_retailers_progress_text);
+
+        loadingAnimation = (AnimationDrawable) progressBar.getDrawable();
+        loadingAnimation.setCallback(progressBar);
+
+        progressLayout.setVisibility(View.GONE);
+        gridView.setVisibility(View.VISIBLE);
+        if (showLoading) {
+            new LoadingAsyncTask().execute();
+        }
 
         return view;
     }
@@ -207,5 +235,43 @@ public class RetailersFragment extends NavigationDrawerFragment {
             // drawerListView. setItemChecked(position, true);
         });
         drawerListView.setAdapter(adapter);
+    }
+
+    public class LoadingAsyncTask extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            progressLayout.setVisibility(View.VISIBLE);
+            gridView.setVisibility(View.GONE);
+            loadingAnimation.setVisible(true, true);
+            loadingAnimation.start();
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                Thread.sleep(3000);
+                publishProgress();
+                Thread.sleep(2000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate();
+            progressText.setText("Loading...");
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            progressLayout.setVisibility(View.GONE);
+            gridView.setVisibility(View.VISIBLE);
+            loadingAnimation.stop();
+        }
     }
 }
