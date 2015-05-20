@@ -120,6 +120,8 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
             }
         });
         drawerListView.setAdapter(adapter);
+
+        drawerListView. setItemChecked(3, true);
     }
 
 }

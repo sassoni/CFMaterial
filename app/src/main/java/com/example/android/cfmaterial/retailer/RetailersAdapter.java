@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.cfmaterial.R;
 
@@ -24,8 +25,13 @@ public class RetailersAdapter extends ArrayAdapter<Retailer> {
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.retailers_gridview_tile, parent, false);
+
         ImageView imageView = (ImageView) view.findViewById(R.id.retailers_gridview_tile_image);
         imageView.setImageResource(retailers[position].getDrawableId());
+
+        TextView textView = (TextView) view.findViewById(R.id.retailers_gridview_tile_text);
+        textView.setText(retailers[position].getName());
+
         return view;
     }
 
