@@ -3,6 +3,7 @@ package com.example.android.cfmaterial;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.example.android.cfmaterial.offer.RetailerOffersFragment;
@@ -11,9 +12,11 @@ import com.example.android.cfmaterial.offer.SavedOffersFragment;
 public class TabsViewPagerAdapter extends FragmentPagerAdapter {
 
     String[] tabNames = new String[]{"RETAILER OFFERS", "SAVED OFFERS"};
+    private Toolbar toolbar;
 
     public TabsViewPagerAdapter(FragmentManager fm) {
         super(fm);
+        this.toolbar = toolbar;
         Log.i("TABSADAPTER", "constructor");
     }
 

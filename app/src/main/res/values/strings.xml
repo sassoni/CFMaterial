@@ -22,6 +22,9 @@
     <string name="offer_clip_error">Connection error. Unable to clip the offer.</string>
     <string name="offer_clip_retry">RETRY</string>
 
+    <!--Saved Offers-->
+    <string name="saved_offers_empty">Start saving by clipping offers in the "RETAILER OFFERS" tab.</string>
+
     <!--Offer JSON String-->
     <string name="offer_data_json">[
     {

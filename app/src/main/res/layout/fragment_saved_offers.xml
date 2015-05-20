@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ebebeb">
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
     <TextView
+        android:id="@+id/saved_offers_empty_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Saved Offers"
-        android:textColor="@android:color/black"/>
+        android:layout_weight="1"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="@string/saved_offers_empty"
+        android:textColor="@color/accent"
+        android:textSize="18sp"
+        android:visibility="gone" />
+
+    <com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView
+        android:id="@+id/saved_offers_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:drawSelectorOnTop="false"
+        android:visibility="visible"></com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView>
 
 </LinearLayout>

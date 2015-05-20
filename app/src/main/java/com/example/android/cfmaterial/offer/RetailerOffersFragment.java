@@ -1,5 +1,6 @@
 package com.example.android.cfmaterial.offer;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -45,7 +46,18 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
     private LinearLayout snackBarError;
     private Button snackBarErrorRetry;
 
+    //private ActionBar actionBar;
+    /*private final int toolbarTop;
+    private final int toolbarBottom;
+    private final int toolbarL*/
+
     private static Handler handler;
+
+    public interface RetailerOffersFragmentListener{
+        public void OnOfferClip(Offers offers);
+    }
+
+    private RetailerOffersFragmentListener retailerOffersFragmentListener;
 
     public static RetailerOffersFragment newInstance(String param1) {
         RetailerOffersFragment retailerOffersFragment = new RetailerOffersFragment();
@@ -56,7 +68,8 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
     }
 
     public RetailerOffersFragment() {
-
+        /*actionBar = (Toolbar) getActivity().findViewById(R.id.actionBar);
+        actionBar.*/
     }
 
     @Override
@@ -66,6 +79,12 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
             handler = new Handler(this);
         }
     }
+/*
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        retailerOffersFragmentListener = (RetailerOffersFragmentListener) getActivity();
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -78,6 +97,7 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
         offersExpandableAdapter = new OffersExpandableAdapter(getActivity(), offersList, RetailerOffersFragment.this);
         expandableListView.setAdapter(offersExpandableAdapter);
         expandableListView.setGroupIndicator(null);
+        //expandableListView.setOnTouchListener(onTouchListener);
 
         snackBarClipped = (TextView) view.findViewById(R.id.snackbar_clip_success);
         snackBarError = (LinearLayout) view.findViewById(R.id.snackbar_clip_error);
@@ -88,6 +108,8 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
 
             }
         });
+
+        //actionBar = getActivity().getActionBar();
 
         return view;
     }
@@ -108,7 +130,7 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (groupPosition %3 == 0){
+                if (groupPosition % 3 == 0) {
                     snackBarError.setVisibility(View.VISIBLE);
                     offersList.get(groupPosition).setIsClipping(false);
                     offersExpandableAdapter.notifyDataSetChanged();
@@ -118,7 +140,8 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
                             snackBarError.setVisibility(View.GONE);
                         }
                     }, 3000);
-                }else {
+                } else {
+                    //retailerOffersFragmentListener.OnOfferClip(offersList.get(groupPosition));
                     animateCouponClipped(groupPosition);
                     snackBarClipped.setVisibility(View.VISIBLE);
                     snackBarClipped.postDelayed(new Runnable() {
@@ -225,6 +248,63 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
         });
 
     }
+
+    /*private View.OnTouchListener onTouchListener = new View.OnTouchListener() {
+
+        float mDownY;
+
+        @Override
+        public boolean onTouch(View v, MotionEvent event) {
+
+            switch (event.getAction()){
+
+                case MotionEvent.ACTION_DOWN:
+                    Log.i(TAG, "Action Down");
+                    mDownY = event.getY();
+                    Log.i(TAG, "mDownY "+ mDownY);
+                    break;
+
+                case MotionEvent.ACTION_CANCEL:
+                    Log.i(TAG, "Action Cancel");
+                    break;
+
+                case MotionEvent.ACTION_MOVE:
+                    Log.i(TAG, "Action Move");
+                    float deltaY = event.getY() - mDownY;
+                    Log.i(TAG, "deltaY "+deltaY);
+
+                    mDownY = event.getY();
+                    Log.i(TAG, "mDownY " + mDownY);
+                    hideToolBar(deltaY);
+                    break;
+
+                case MotionEvent.ACTION_UP:
+                    Log.i(TAG, "Action Up");
+                    mDownY = event.getY();
+                    Log.i(TAG, "mDownY "+ mDownY);
+                    break;
+
+            }
+
+            return false;
+        }
+    };*/
+
+    private void resetToolBar(){
+
+    }
+
+    private void showToolBar(){
+
+    }
+
+    /*private void hideToolBar(float deltaY){
+        if (deltaY < 0){
+            deltaY = deltaY*-1;
+            int newTop = actionBar.get - (int) deltaY;
+            actionBar.setTop(newTop);
+        }
+    }*/
 
     @Override
     public boolean handleMessage(Message msg) {
