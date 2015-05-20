@@ -16,6 +16,8 @@ public class Offers implements Serializable {
     private String terms;
     private String expiration;
     private boolean isClipped = false;
+    private boolean isClipping = false;
+    private boolean isExpanded = false;
 
     public int getId() {
         return id;
@@ -71,6 +73,22 @@ public class Offers implements Serializable {
 
     public void setTerms(String terms) {
         this.terms = terms;
+    }
+
+    public boolean isExpanded() {
+        return isExpanded;
+    }
+
+    public void setIsExpanded(boolean isExpanded) {
+        this.isExpanded = isExpanded;
+    }
+
+    public boolean isClipping() {
+        return isClipping;
+    }
+
+    public void setIsClipping(boolean isClipping) {
+        this.isClipping = isClipping;
     }
 }
 

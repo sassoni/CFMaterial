@@ -17,6 +17,11 @@
     <string name="offer_clip_unclipped">Clip Coupon</string>
     <string name="offer_clip_clipped">Clipped</string>
 
+    <!--Snackbar-->
+    <string name="offer_clip_success">Offer successfully clipped. You can now view this offer in the "Clipped Offers" Tab.</string>
+    <string name="offer_clip_error">Connection error. Unable to clip the offer.</string>
+    <string name="offer_clip_retry">RETRY</string>
+
     <!--Offer JSON String-->
     <string name="offer_data_json">[
     {

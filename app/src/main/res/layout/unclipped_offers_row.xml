@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/white">
 
     <ImageView
@@ -50,38 +49,45 @@
         android:text="Expires 09/12/2014"
         android:textSize="12sp" />
 
-    <Button
-        android:id="@+id/offer_expand"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:layout_alignBaseline="@id/offer_clip"
-        android:layout_below="@id/offer_layout_offer_expiration"
-        android:background="@drawable/ic_action_expand"/>
-
-    <ProgressBar
-        android:id="@+id/offer_clip_progressbar"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginRight="20dp"
-        android:layout_below="@id/offer_layout_offer_expiration"
-        android:layout_marginTop="15dp"
-        android:layout_toLeftOf="@id/offer_expand"
-        android:visibility="invisible"/>
-
-    <Button
-        android:id="@+id/offer_clip"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:drawablePadding="5dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignBottom="@+id/offer_layout_offer_image"
-        android:layout_below="@+id/offer_layout_offer_expiration"
-        android:layout_toRightOf="@+id/offer_layout_offer_image"
-        android:layout_toLeftOf="@id/offer_expand"
-        android:gravity="center_vertical|right"
-        android:textSize="12sp" />
+        android:orientation="horizontal"
+        android:layout_toRightOf="@id/offer_layout_offer_image"
+        android:layout_below="@id/offer_layout_offer_expiration"
+        android:layout_marginTop="10dp"
+        android:gravity="right"
+        >
+
+        <Button
+            android:id="@+id/offer_clip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:drawablePadding="5dp"
+            android:layout_weight="1"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical|right"
+            android:textSize="12sp"/>
+
+        <ProgressBar
+            android:id="@+id/offer_clip_progressbar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:layout_toLeftOf="@id/offer_expand"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/offer_expand"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginRight="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/ic_action_expand"/>
+
+    </LinearLayout>
 
 </RelativeLayout>

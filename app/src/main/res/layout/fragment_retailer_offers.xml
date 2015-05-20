@@ -5,10 +5,29 @@
     android:background="#ebebeb"
     android:orientation="vertical">
 
-    <com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView
-        android:id="@+id/offer_listview"
+    <view
+        class="com.example.android.cfmaterial.offer.BackgroundContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:drawSelectorOnTop="false"></com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/listViewBackground">
+
+        <com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView
+            android:id="@+id/offer_listview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawSelectorOnTop="false"></com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView>
+
+    </view>
+
+    <include
+        android:id="@+id/snackbar_clip_success"
+        layout="@layout/snackbar_clipped" />
+
+
+    <include
+        android:id="@+id/snackbar_clip_error"
+        layout="@layout/snackbar_clip_error" />
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.android.cfmaterial.R;
@@ -61,12 +62,12 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
 
     @Override
     public long getGroupId(int groupPosition) {
-        return 0;
+        return offersList.get(groupPosition).getId();
     }
 
     @Override
     public long getChildId(int groupPosition, int childPosition) {
-        return 0;
+        return offersList.get(groupPosition).getId();
     }
 
     @Override
@@ -80,7 +81,7 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
 
         if (convertView == null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.offers_layout_list, null, false);
+            convertView = inflater.inflate(R.layout.unclipped_offers_row, null, false);
 
             viewHolder = new GroupViewHolder();
             viewHolder.description = (TextView) convertView.findViewById(R.id.offer_layout_offer_description);
@@ -88,6 +89,7 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
             viewHolder.expiration = (TextView) convertView.findViewById(R.id.offer_layout_offer_expiration);
             viewHolder.imageView = (ImageView) convertView.findViewById(R.id.offer_layout_offer_image);
             viewHolder.offerClip = (Button) convertView.findViewById(R.id.offer_clip);
+            viewHolder.progressBar = (ProgressBar) convertView.findViewById(R.id.offer_clip_progressbar);
             viewHolder.expand = (Button) convertView.findViewById(R.id.offer_expand);
             convertView.setTag(viewHolder);
         }else {
@@ -96,42 +98,46 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
 
         final Offers offers = offersList.get(groupPosition);
 
+        if (offers.isClipping()){
+            viewHolder.progressBar.setVisibility(View.VISIBLE);
+            viewHolder.offerClip.setVisibility(View.INVISIBLE);
+        }else {
+            viewHolder.progressBar.setVisibility(View.GONE);
+            viewHolder.offerClip.setVisibility(View.VISIBLE);
+        }
+
         viewHolder.expand.setTag(groupPosition);
-        viewHolder.expand.setTag(R.id.offerExpand, true);
         viewHolder.expand.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final Button button = (Button) v;
-
                 offersGridEventListener.onOfferExpand((int) v.getTag());
-                boolean aBoolean = (boolean) v.getTag(R.id.offerExpand);
-                if (aBoolean == false){
-                    v.setTag(R.id.offerExpand,  true);
-                    button.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_action_collapse));
-                }else {
+                final Button button = (Button) v;
+                if (offers.isExpanded() == true){
+                    offers.setIsExpanded(false);
                     button.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_action_expand));
-                    v.setTag(R.id.offerExpand, false);
+                }else {
+                    offers.setIsExpanded(true);
+                    button.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_action_collapse));
                 }
             }
         });
 
         viewHolder.offerClip.setTag(groupPosition);
         setClippedButtonState(viewHolder.offerClip, offers.isClipped());
-
         viewHolder.offerClip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int position = (Integer) v.getTag();
-                Offers offersData = offersList.get(position);
-                if (offersData.isClipped()) {
+                offersGridEventListener.offerClipped((int) v.getTag());
+                //int position = (Integer) v.getTag();
+
+                /*if (offersData.isClipped()) {
                     offersData.setClipped(false);
                     setClippedButtonState(viewHolder.offerClip, false);
                 } else {
                     offersData.setClipped(true);
                     setClippedButtonState(viewHolder.offerClip, true);
-                }
-                offersGridEventListener.offerClipped((int) v.getTag());
+                }*/
             }
         });
 
@@ -237,6 +243,11 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
         return true;
     }
 
+    public void remove(int groupPosition){
+        offersList.remove(groupPosition);
+        notifyDataSetChanged();
+    }
+
     private void setClippedButtonState(Button clippedButton, boolean isClipped) {
         if (isClipped) {
             clippedButton.setText(resources.getString(R.string.offer_clip_clipped));
@@ -256,6 +267,7 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
         TextView expiration;
         Button offerClip;
         Button expand;
+        ProgressBar progressBar;
     }
 
     private class ChildViewHolder{
