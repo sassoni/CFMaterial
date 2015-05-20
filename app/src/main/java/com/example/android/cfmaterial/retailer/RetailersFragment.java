@@ -138,6 +138,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
         gridView.setVisibility(View.VISIBLE);
         if (showLoading) {
             new LoadingAsyncTask().execute();
+            showLoading = false;
         }
 
         return view;
