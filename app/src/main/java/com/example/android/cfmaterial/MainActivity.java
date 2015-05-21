@@ -1,5 +1,6 @@
 package com.example.android.cfmaterial;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -13,6 +14,7 @@ import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 import com.example.android.cfmaterial.offer.OffersTabsFragment;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.retailer.RetailersFragment;
+import com.example.android.cfmaterial.tutorial.TutorialActivity;
 
 
 public class MainActivity extends AppCompatActivity implements RetailersFragment.OnRetailerClickedListener, NavDrawerItemClickedListener {
@@ -106,6 +108,9 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
             case RET_NEAR:
                 showRetailersFragment(RetailersFragment.Mode.NEARBY);
                 break;
+            case HELP:
+                Intent tutorialIntent = new Intent(this, TutorialActivity.class);
+                startActivity(tutorialIntent);
         }
     }
 }

@@ -184,7 +184,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
         ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
 
         smallLogo.setVisibility(View.GONE);
-        largeLogo.setImageResource(R.drawable.circle);
+        largeLogo.setImageResource(R.drawable.cellfire_circle);
 
         drawerListView.setOnItemClickListener(null);
         drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
@@ -213,6 +213,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                         break;
                     case 8:
                         // show help
+                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.HELP);
                         break;
                     case 9:
                         // show about
