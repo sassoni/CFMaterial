@@ -1,5 +1,6 @@
 package com.example.android.cfmaterial.offer;
 
+import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -16,6 +17,7 @@ import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
 import com.example.android.cfmaterial.TabsViewPagerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
+import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.slidingtabs.SlidingTabLayout;
 
@@ -32,6 +34,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
     public static final String OFFER_ID = "offerId";
 
     private Retailer retailer;
+    private NavDrawerItemClickedListener navDrawerItemClickedListener;
 
     public static OffersTabsFragment newInstance(Retailer retailer) {
         OffersTabsFragment fragment = new OffersTabsFragment();
@@ -88,7 +91,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         adapter.addHeader(retailer.getName());
         adapter.addItem("Offers", R.drawable.ic_action_view_as_list);
         adapter.addItem("Card", R.drawable.ic_action_labels);
-        adapter.addItem("Stores", R.drawable.ic_action_make_available_offline);
+        adapter.addItem("Stores", R.drawable.ic_action_map);
         adapter.addItem("History", R.drawable.ic_action_go_to_today);
         adapter.addDivider();
         adapter.addHeader("Retailers");
@@ -117,6 +120,8 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
                 view.setSelected(true);
                 drawer.closeDrawers();
                 switch (position) {
+                    case 0:
+                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.LOGIN);
                     case 3:
                         break;
                     case 4:
@@ -139,4 +144,20 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         toolbar.setTitle("Offers");
     }
 
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            navDrawerItemClickedListener = (NavDrawerItemClickedListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement listeners");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        navDrawerItemClickedListener = null;
+    }
 }

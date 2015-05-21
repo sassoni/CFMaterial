@@ -99,6 +99,10 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     @Override
     public void onNavDrawerItemClicked(NavDrawerItem item) {
         switch (item) {
+            case LOGIN:
+                Intent intent = new Intent(this, LoginActivity.class);
+                startActivity(intent);
+                break;
             case RET_ALL:
                 showRetailersFragment(RetailersFragment.Mode.ALL);
                 break;

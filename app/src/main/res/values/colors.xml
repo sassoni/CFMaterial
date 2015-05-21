@@ -10,6 +10,7 @@
     <item name="text" type="color">@color/white</item>
 
     <item name="accent" type="color">#9E9E9E</item>
+    <item name="accent_dark" type="color">#616161</item>
 
     <item name="primary_text" type="color">#212121</item>
     <item name="secondary_text" type="color">#727272</item>
@@ -24,4 +25,5 @@
     <color name="snackbar_background">#323232</color>
     <color name="listview_background">#ffffff</color>
     <color name="text_body_color">#333333</color>
+    <color name="button_text">#ffffff</color>
 </resources>

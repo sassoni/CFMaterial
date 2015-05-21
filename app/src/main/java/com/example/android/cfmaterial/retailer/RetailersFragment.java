@@ -193,8 +193,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                 drawer.closeDrawers();
                 switch (position) {
                     case 0:
-                        // login
-
+                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.LOGIN);
                         break;
                     case 3:
                         // show all retailers

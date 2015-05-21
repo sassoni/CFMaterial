@@ -23,7 +23,12 @@
     <string name="offer_clip_retry">RETRY</string>
 
     <!--Saved Offers-->
-    <string name="saved_offers_empty">Start saving by clipping offers in the "RETAILER OFFERS" tab.</string>
+    <string name="saved_offers_empty">Start saving by clipping offers in the \"RETAILER OFFERS\" tab.</string>
+
+    <!--Login-->
+    <string name="edittext_phone_number_hint">Phone</string>
+    <string name="edittext_dob_hint">Date Of Birth</string>
+    <string name="button_login">Login</string>
 
     <!--Offer JSON String-->
     <string name="offer_data_json">[

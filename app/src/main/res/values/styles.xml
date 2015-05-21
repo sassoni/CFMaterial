@@ -10,4 +10,9 @@
     <!-- ToolBar -->
     <style name="ToolBarStyle" parent="Theme.AppCompat" />
 
+    <style name="button">
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/button_text</item>
+    </style>
+
 </resources>

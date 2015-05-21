@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="40dp"
+    android:background="@android:color/white">
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="40dp"
+        android:src="@drawable/logo" />
+
+    <EditText
+        android:id="@+id/edittext_phone_number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:digits="0123456789"
+        android:drawableLeft="@drawable/ic_action_call"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_action_call"
+        android:hint="@string/edittext_phone_number_hint"
+        android:imeOptions="actionNext"
+        android:inputType="phone" />
+
+    <EditText
+        android:id="@+id/edittext_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:digits="0123456789"
+        android:drawableLeft="@drawable/ic_action_go_to_today"
+        android:drawablePadding="5dp"
+        android:drawableStart="@drawable/ic_action_go_to_today"
+        android:hint="@string/edittext_dob_hint"
+        android:imeOptions="actionDone"
+        android:inputType="phone"
+        android:maxLength="4" />
+
+    <Button
+        android:id="@+id/button_login"
+        style="@style/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/button_login" />
+
+</LinearLayout>
