@@ -33,7 +33,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
     }
 
     public interface OnRetailerClickedListener {
-        public void onRetailerClicked(Retailer retailer);
+        public void onRetailerClicked(Retailer retailer, int fragmentPosition);
     }
 
     private OnRetailerClickedListener retailerClickedListener;
@@ -78,11 +78,12 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
     Retailer[] retailers = allRetailers;
 
-    public static RetailersFragment newInstance(Mode mode, boolean showLoading) {
+    public static RetailersFragment newInstance(Mode mode, boolean showLoading, int position) {
         RetailersFragment fragment = new RetailersFragment();
         Bundle args = new Bundle();
         args.putSerializable(MODE_KEY, mode);
         args.putBoolean(SHOW_LOADING_KEY, showLoading);
+        args.putInt(NAV_DRAWER_POSITION_KEY, position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -107,6 +108,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                     break;
             }
             showLoading = getArguments().getBoolean(SHOW_LOADING_KEY);
+            positionInNavDrawer = getArguments().getInt(NAV_DRAWER_POSITION_KEY);
         }
     }
 
@@ -123,7 +125,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (retailerClickedListener != null) {
-                    retailerClickedListener.onRetailerClicked(retailers[position]);
+                    retailerClickedListener.onRetailerClicked(retailers[position], positionInNavDrawer);
                 }
             }
         });
@@ -166,74 +168,26 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
     @Override
     public void setupNavigationDrawer() {
-        final NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity());
-        adapter.addItem("Login", R.drawable.ic_action_accounts);
-        adapter.addDivider();
-        adapter.addHeader("Retailers");
-        adapter.addItem("All", R.drawable.ic_action_view_as_grid);
-        adapter.addItem("Favorites", R.drawable.ic_action_favorite);
-        adapter.addItem("Nearby", R.drawable.ic_action_place);
-        adapter.addDivider();
-        adapter.addItem("Settings", R.drawable.ic_action_settings);
-        adapter.addItem("Help", R.drawable.ic_action_help);
-        adapter.addItem("About", R.drawable.ic_action_about);
-
-        final ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
-        final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
         ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
         ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
-
         smallLogo.setVisibility(View.GONE);
         largeLogo.setImageResource(R.drawable.cellfire_circle);
 
-        drawerListView.setOnItemClickListener(null);
-        drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+        final NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity(), navDrawerItemClickedListener);
+        adapter.populate();  // helper method
+
+        ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
+        final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+
+        drawerListView.setAdapter(adapter);
+        drawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                drawer.closeDrawers();
-                switch (position) {
-                    case 0:
-                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.LOGIN);
-                        break;
-                    case 3:
-                        // show all retailers
-                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.RET_ALL);
-                        break;
-                    case 4:
-                        // show favorites
-                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.RET_FAV);
-                        break;
-                    case 5:
-                        // show nearby
-                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.RET_NEAR);
-                        break;
-                    case 7:
-                        // show settings
-                        break;
-                    case 8:
-                        // show help
-                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.HELP);
-                        break;
-                    case 9:
-                        // show about
-                    default:
-                        break;
-                }
+                drawerLayout.closeDrawers();
+                navDrawerItemClickedListener.onNavDrawerItemClicked(position, adapter.getItem(position).getAction());
             }
         });
-        drawerListView.setAdapter(adapter);
-
-        switch (mode) {
-            case ALL:
-                drawerListView. setItemChecked(3, true);
-                break;
-            case FAVORITES:
-                drawerListView. setItemChecked(4, true);
-                break;
-            case NEARBY:
-                drawerListView. setItemChecked(5, true);
-                break;
-        }
+        drawerListView.setItemChecked(positionInNavDrawer, true);
     }
 
     @Override

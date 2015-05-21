@@ -1,52 +1,69 @@
 package com.example.android.cfmaterial.navdrawer;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
+import com.example.android.cfmaterial.R;
+
 public class NavDrawerAdapter extends ArrayAdapter<NavDrawerRow> {
 
+//    public enum Type {
+//        GENERIC, SPECIFIC
+//    }
+
     private Context context;
+    private NavDrawerItemClickedListener listener;
 
-    public void addHeader(String title) {
-        add(new NavDrawerRowHeader(title));
+    public void addRow(NavDrawerRow row) {
+        add(row);
     }
 
-    public void addItem(String title, int iconId) {
-        add(new NavDrawerRowItem(title, iconId));
-    }
-
-    public void addDivider() {
-        add(new NavDrawerRowDivider());
-    }
-
-    public NavDrawerAdapter(Context context) {
+    public NavDrawerAdapter(Context context, NavDrawerItemClickedListener listener) {
         super(context, 0);
         this.context = context;
+        this.listener = listener;
     }
 
-    // TODO Viewholders
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View rowView;
-        NavDrawerRow row = getItem(position);
-
-        // Header
-        if (row instanceof NavDrawerRowHeader) {
-            rowView = ((NavDrawerRowHeader) row).inflateView(context, parent);
-            if (convertView.isSelected()) {
-            }
-        }
-        // Item
-        else if (row instanceof NavDrawerRowItem) {
-            rowView = ((NavDrawerRowItem) row).inflateView(context, parent);
-        }
-        // Divider
-        else {
-            rowView = ((NavDrawerRowDivider) row).inflateView(context, parent);
-        }
-
+        final NavDrawerRow row = getItem(position);
+        Log.i("ADAPTER", "Getting view");
+        View rowView = row.inflateView(context, parent);
         return rowView;
+    }
+
+    public void populate() {
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN));
+        addRow(NavDrawerRowBuilder.getDivider());
+        addRow(NavDrawerRowBuilder.getHeader("Retailers"));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_ALL));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_FAV));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_NEAR));
+        addRow(NavDrawerRowBuilder.getDivider());
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.SETTINGS));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HELP));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT));
+    }
+
+    public void populate(String retailerName) {
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN));
+        addRow(NavDrawerRowBuilder.getDivider());
+        addRow(NavDrawerRowBuilder.getHeader(retailerName));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.OFFERS));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.CARD));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.STORES));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HISTORY));
+        addRow(NavDrawerRowBuilder.getDivider());
+        addRow(NavDrawerRowBuilder.getHeader("Retailers"));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_ALL));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_FAV));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_NEAR));
+        addRow(NavDrawerRowBuilder.getDivider());
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.SETTINGS));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HELP));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT));
     }
 }

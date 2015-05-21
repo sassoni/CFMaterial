@@ -18,12 +18,14 @@ import com.example.android.cfmaterial.R;
 import com.example.android.cfmaterial.TabsViewPagerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
+import com.example.android.cfmaterial.navdrawer.NavDrawerRow;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.slidingtabs.SlidingTabLayout;
 
 public class OffersTabsFragment extends NavigationDrawerFragment {
 
     private static final String RETAILER_KEY = "retailer_key";
+
     public static final String OFFER_CLIP_BROADCAST = "offerClipped";
 
     public static final String OFFER_HEADING = "offerHeading";
@@ -36,10 +38,11 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
     private Retailer retailer;
     private NavDrawerItemClickedListener navDrawerItemClickedListener;
 
-    public static OffersTabsFragment newInstance(Retailer retailer) {
+    public static OffersTabsFragment newInstance(Retailer retailer, int position) {
         OffersTabsFragment fragment = new OffersTabsFragment();
         Bundle args = new Bundle();
         args.putParcelable(RETAILER_KEY, retailer);
+        args.putInt(NAV_DRAWER_POSITION_KEY, position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,6 +55,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             retailer = getArguments().getParcelable(RETAILER_KEY);
+            positionInNavDrawer = getArguments().getInt(NAV_DRAWER_POSITION_KEY);
         }
     }
 
@@ -85,57 +89,27 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
 
     @Override
     public void setupNavigationDrawer() {
-        NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity());
-        adapter.addItem("Login", R.drawable.ic_action_accounts);
-        adapter.addDivider();
-        adapter.addHeader(retailer.getName());
-        adapter.addItem("Offers", R.drawable.ic_action_view_as_list);
-        adapter.addItem("Card", R.drawable.ic_action_labels);
-        adapter.addItem("Stores", R.drawable.ic_action_map);
-        adapter.addItem("History", R.drawable.ic_action_go_to_today);
-        adapter.addDivider();
-        adapter.addHeader("Retailers");
-        adapter.addItem("All", R.drawable.ic_action_view_as_grid);
-        adapter.addItem("Favorites", R.drawable.ic_action_favorite);
-        adapter.addItem("Nearby", R.drawable.ic_action_place);
-        adapter.addDivider();
-        adapter.addItem("Settings", R.drawable.ic_action_settings);
-        adapter.addItem("Help", R.drawable.ic_action_help);
-        adapter.addItem("About", R.drawable.ic_action_about);
-
-        ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
-        final DrawerLayout drawer = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
-
         ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
         ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
-
         smallLogo.setVisibility(View.VISIBLE);
         smallLogo.setImageResource(R.drawable.cellfire_circle);
         largeLogo.setImageResource(retailer.getDrawableId());
 
-        drawerListView.setOnItemClickListener(null);
+        final NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity(), navDrawerItemClickedListener);
+        adapter.populate(retailer.getName());
+
+        ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
+        final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+
+        drawerListView.setAdapter(adapter);
         drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                view.setSelected(true);
-                drawer.closeDrawers();
-                switch (position) {
-                    case 0:
-                        navDrawerItemClickedListener.onNavDrawerItemClicked(NavDrawerItemClickedListener.NavDrawerItem.LOGIN);
-                    case 3:
-                        break;
-                    case 4:
-                        break;
-                    case 5:
-                        break;
-                    default:
-                        break;
-                }
+                drawerLayout.closeDrawers();
+                navDrawerItemClickedListener.onNavDrawerItemClicked(position, adapter.getItem(position).getAction());
             }
         });
-        drawerListView.setAdapter(adapter);
-
-        drawerListView. setItemChecked(3, true);
+        drawerListView.setItemChecked(positionInNavDrawer, true);
     }
 
     @Override

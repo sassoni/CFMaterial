@@ -6,6 +6,10 @@ import android.support.v4.app.Fragment;
 
 public abstract class NavigationDrawerFragment extends Fragment {
 
+    protected static final String NAV_DRAWER_POSITION_KEY = "nav_drawer_position_key";
+
+    protected int positionInNavDrawer = 0;
+
     abstract public void setupNavigationDrawer();
     abstract public void setupToolbar();
 
@@ -15,4 +19,5 @@ public abstract class NavigationDrawerFragment extends Fragment {
         setupNavigationDrawer();
         setupToolbar();
     }
+
 }

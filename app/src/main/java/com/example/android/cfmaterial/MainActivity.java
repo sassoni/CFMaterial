@@ -6,14 +6,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
+import com.example.android.cfmaterial.navdrawer.NavDrawerRow;
 import com.example.android.cfmaterial.offer.OffersTabsFragment;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.retailer.RetailersFragment;
+import com.example.android.cfmaterial.stores.StoresFragment;
 import com.example.android.cfmaterial.tutorial.TutorialActivity;
 
 
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
 
         if (savedInstanceState == null) {
             //drawerListView.setItemChecked(3, true);
-            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true);
+            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true, 0);  // manual position?
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_container, retailersFragment)
                     .commit();
@@ -79,8 +82,8 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     // ---------- RetailersFragment.OnRetailerClickedListener ---------- //
 
     @Override
-    public void onRetailerClicked(Retailer retailer) {
-        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance(retailer);
+    public void onRetailerClicked(Retailer retailer, int fragmentPosition) {
+        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance(retailer, fragmentPosition);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, offersTabsFragment)
                 .addToBackStack(null)
@@ -89,32 +92,46 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
 
     // ---------- Aux ---------- //
 
-    private void showRetailersFragment(RetailersFragment.Mode mode) {
-        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false);
+    private void showRetailersFragment(RetailersFragment.Mode mode, int position) {
+        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false, position);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, retailersFragment)
                 .commit();
     }
 
     @Override
-    public void onNavDrawerItemClicked(NavDrawerItem item) {
+    public void onNavDrawerItemClicked(int position, NavDrawerRow.Action item) {
+        Log.i("MAIN", "listener listened!");
+
+        Bundle bundle = new Bundle();
+        bundle.putInt("position", position);
         switch (item) {
             case LOGIN:
                 Intent intent = new Intent(this, LoginActivity.class);
+                intent.putExtra("position", position);
                 startActivity(intent);
                 break;
-            case RET_ALL:
-                showRetailersFragment(RetailersFragment.Mode.ALL);
+            case RETAILERS_SHOW_ALL:
+                showRetailersFragment(RetailersFragment.Mode.ALL, position);
                 break;
-            case RET_FAV:
-                showRetailersFragment(RetailersFragment.Mode.FAVORITES);
+            case RETAILERS_SHOW_FAV:
+                showRetailersFragment(RetailersFragment.Mode.FAVORITES, position);
                 break;
-            case RET_NEAR:
-                showRetailersFragment(RetailersFragment.Mode.NEARBY);
+            case RETAILERS_SHOW_NEAR:
+                showRetailersFragment(RetailersFragment.Mode.NEARBY, position);
                 break;
             case HELP:
                 Intent tutorialIntent = new Intent(this, TutorialActivity.class);
                 startActivity(tutorialIntent);
+                break;
+            case STORES:
+                StoresFragment storesFragment = StoresFragment.newInstance();
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.activity_main_container, storesFragment)
+                        .addToBackStack(null)
+                        .commit();
+                break;
         }
+
     }
 }
