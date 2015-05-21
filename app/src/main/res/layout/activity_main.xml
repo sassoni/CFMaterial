@@ -44,7 +44,7 @@
             android:layout_height="65dp"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/circle" />
+            android:src="@drawable/cellfire_circle" />
 
         <ImageView
             android:id="@+id/drawer_small_logo"
@@ -53,7 +53,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignTop="@+id/drawer_large_logo"
             android:layout_marginRight="10dp"
-            android:src="@drawable/circle" />
+            android:src="@drawable/cellfire_circle" />
 
         <ListView
             android:id="@+id/drawer_listview"

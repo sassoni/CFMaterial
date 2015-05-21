@@ -180,5 +180,9 @@
         \"terms\": \"Buy 3 Get 1 Void if altered, copied, sold, purchased, transferred, exchanged or where prohibited or restricted by law. One coupon per purchase of specified product(s). Good only in USA, APOs &amp; FPOs. CONSUMER: No other coupon sales tax. RETAILER: General Mills will reimburse you the face value of this coupon plus 8¢ if submitted in compliance with our redemption policy. Copy available upon request. Cash value 1/100 cent. Send to GENERAL MILLS, P.O. Box 880588, El Paso TX 88588-0588 or an authorized clearinghouse.\"
     }
 ]</string>
+    <string name="title_activity_tutorial">TutorialActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>

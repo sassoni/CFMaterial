@@ -99,7 +99,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
 
         smallLogo.setVisibility(View.VISIBLE);
-        smallLogo.setImageResource(R.drawable.circle);
+        smallLogo.setImageResource(R.drawable.cellfire_circle);
         largeLogo.setImageResource(retailer.getDrawableId());
 
         drawerListView.setOnItemClickListener(null);
