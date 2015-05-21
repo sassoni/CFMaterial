@@ -1,10 +1,11 @@
 package com.example.android.cfmaterial.offer;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -130,7 +131,7 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (groupPosition % 3 == 0) {
+                if (groupPosition % 3 == 0 && groupPosition != 0) {
                     snackBarError.setVisibility(View.VISIBLE);
                     offersList.get(groupPosition).setIsClipping(false);
                     offersExpandableAdapter.notifyDataSetChanged();
@@ -193,8 +194,18 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
             }
         }
 
+        // Broadcast
+        Offers offers = (Offers) offersExpandableAdapter.getGroup(groupPosition);
+        Intent intent = new Intent(OffersTabsFragment.OFFER_CLIP_BROADCAST);
+        intent.putExtra(OffersTabsFragment.OFFER_DESCRIPTION, offers.getDescription());
+        intent.putExtra(OffersTabsFragment.OFFER_DETAIL_DESCRIPTION, offers.getDetailDescription());
+        intent.putExtra(OffersTabsFragment.OFFER_ID, offers.getId());
+        intent.putExtra(OffersTabsFragment.OFFER_EXPIRATION, offers.getExpiration());
+        intent.putExtra(OffersTabsFragment.OFFER_HEADING, offers.getHeading());
+        intent.putExtra(OffersTabsFragment.OFFER_TERMS, offers.getTerms());
+        LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(intent);
+
         // Delete the item from the adapter
-        int position = expandableListView.getPositionForView(viewToRemove);
         offersExpandableAdapter.remove(groupPosition);
 
         final ViewTreeObserver observer = expandableListView.getViewTreeObserver();

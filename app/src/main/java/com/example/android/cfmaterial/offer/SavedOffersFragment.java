@@ -1,7 +1,12 @@
 package com.example.android.cfmaterial.offer;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +31,7 @@ public class SavedOffersFragment extends Fragment implements SavedOffersAdapter.
     private AnimatedExpandableListView expandableListView;
     private TextView savedOffersEmpty;
     private SavedOffersAdapter savedOffersAdapter;
+    private OfferClippedBroadcastReceiver offerClippedBroadcastReceiver;
 
     public static SavedOffersFragment newInstance(String param1) {
         SavedOffersFragment savedOffersFragment = new SavedOffersFragment();
@@ -52,7 +58,7 @@ public class SavedOffersFragment extends Fragment implements SavedOffersAdapter.
 
         savedOffersEmpty = (TextView) view.findViewById(R.id.saved_offers_empty_message);
 
-        loadOffersList(getString(R.string.offer_data_json));
+        //loadOffersList(getString(R.string.offer_data_json));
 
         expandableListView = (AnimatedExpandableListView) view.findViewById(R.id.saved_offers_listview);
         savedOffersAdapter = new SavedOffersAdapter(getActivity(), savedOffers, this);
@@ -65,12 +71,31 @@ public class SavedOffersFragment extends Fragment implements SavedOffersAdapter.
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        offerClippedBroadcastReceiver = new OfferClippedBroadcastReceiver();
+        LocalBroadcastManager.getInstance(getActivity()).registerReceiver(offerClippedBroadcastReceiver, new IntentFilter(OffersTabsFragment.OFFER_CLIP_BROADCAST));
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocalBroadcastManager.getInstance(getActivity()).unregisterReceiver(offerClippedBroadcastReceiver);
+        offerClippedBroadcastReceiver = null;
+    }
+
+    @Override
     public void onOfferExpand(int groupPosition) {
         if (expandableListView.isGroupExpanded(groupPosition)){
             expandableListView.collapseGroupWithAnimation(groupPosition);
         }else {
             expandableListView.expandGroupWithAnimation(groupPosition);
         }
+    }
+
+    @Override
+    public void onOfferSelected(int groupPosition) {
+
     }
 
     public void loadOffersList(String jsonData) {
@@ -103,6 +128,22 @@ public class SavedOffersFragment extends Fragment implements SavedOffersAdapter.
         }else {
             savedOffersEmpty.setVisibility(View.GONE);
             expandableListView.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private class OfferClippedBroadcastReceiver extends BroadcastReceiver {
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Offers offers = new Offers();
+            offers.setDescription(intent.getStringExtra(OffersTabsFragment.OFFER_DESCRIPTION));
+            offers.setDetailDescription(intent.getStringExtra(OffersTabsFragment.OFFER_DETAIL_DESCRIPTION));
+            offers.setId(intent.getIntExtra(OffersTabsFragment.OFFER_ID, 0));
+            offers.setHeading(intent.getStringExtra(OffersTabsFragment.OFFER_HEADING));
+            offers.setTerms(intent.getStringExtra(OffersTabsFragment.OFFER_TERMS));
+            offers.setExpiration(intent.getStringExtra(OffersTabsFragment.OFFER_EXPIRATION));
+            savedOffersAdapter.addNewOffer(offers);
+            savedOffersListUICheck();
         }
     }
 

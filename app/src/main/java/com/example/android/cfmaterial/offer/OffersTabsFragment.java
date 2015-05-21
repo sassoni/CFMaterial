@@ -22,6 +22,14 @@ import com.example.android.cfmaterial.slidingtabs.SlidingTabLayout;
 public class OffersTabsFragment extends NavigationDrawerFragment {
 
     private static final String RETAILER_KEY = "retailer_key";
+    public static final String OFFER_CLIP_BROADCAST = "offerClipped";
+
+    public static final String OFFER_HEADING = "offerHeading";
+    public static final String OFFER_DESCRIPTION = "offerDescription";
+    public static final String OFFER_DETAIL_DESCRIPTION = "offerDetailDesc";
+    public static final String OFFER_TERMS = "offerTerms";
+    public static final String OFFER_EXPIRATION = "offerExpiration";
+    public static final String OFFER_ID = "offerId";
 
     private Retailer retailer;
 

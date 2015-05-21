@@ -18,6 +18,7 @@ public class Offers implements Serializable {
     private boolean isClipped = false;
     private boolean isClipping = false;
     private boolean isExpanded = false;
+    private boolean isOfferSelected = false;
 
     public int getId() {
         return id;
@@ -89,6 +90,14 @@ public class Offers implements Serializable {
 
     public void setIsClipping(boolean isClipping) {
         this.isClipping = isClipping;
+    }
+
+    public boolean isOfferSelected() {
+        return isOfferSelected;
+    }
+
+    public void setIsOfferSelected(boolean isOfferSelected) {
+        this.isOfferSelected = isOfferSelected;
     }
 }
 

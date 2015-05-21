@@ -26,6 +26,7 @@ public class SavedOffersAdapter extends AnimatedExpandableListView.AnimatedExpan
 
     public interface SavedOffersEventListener{
         public void onOfferExpand(int groupPosition);
+        public void onOfferSelected(int groupPosition);
     }
 
     private SavedOffersEventListener savedOffersEventListener;
@@ -93,7 +94,7 @@ public class SavedOffersAdapter extends AnimatedExpandableListView.AnimatedExpan
             viewHolder.heading = (TextView) convertView.findViewById(R.id.offer_layout_offer_heading);
             viewHolder.expiration = (TextView) convertView.findViewById(R.id.offer_layout_offer_expiration);
             viewHolder.imageView = (ImageView) convertView.findViewById(R.id.offer_layout_offer_image);
-            viewHolder.redeem = (Button) convertView.findViewById(R.id.offer_redeem);
+            viewHolder.offerSelected = (Button) convertView.findViewById(R.id.offer_redeem);
             viewHolder.expand = (Button) convertView.findViewById(R.id.offer_expand);
             convertView.setTag(viewHolder);
         }else {
@@ -111,15 +112,30 @@ public class SavedOffersAdapter extends AnimatedExpandableListView.AnimatedExpan
             @Override
             public void onClick(View v) {
 
-                savedOffersEventListener.onOfferExpand((int) v.getTag());
+                int groupPosition = (int) v.getTag();
+                savedOffersEventListener.onOfferExpand(groupPosition);
                 final Button button = (Button) v;
-                if (offers.isExpanded() == true) {
-                    offers.setIsExpanded(false);
+                if (offersList.get(groupPosition).isExpanded()) {
+                    offersList.get(groupPosition).setIsExpanded(false);
                     button.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_action_expand));
                 } else {
-                    offers.setIsExpanded(true);
+                    offersList.get(groupPosition).setIsExpanded(true);
                     button.setBackgroundDrawable(resources.getDrawable(R.drawable.ic_action_collapse));
                 }
+            }
+        });
+
+        viewHolder.offerSelected.setTag(groupPosition);
+        viewHolder.offerSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int groupPosition = (int) v.getTag();
+                if (offersList.get(groupPosition).isOfferSelected()){
+                    offersList.get(groupPosition).setIsOfferSelected(false);
+                }else {
+                    offersList.get(groupPosition).setIsOfferSelected(true);
+                }
+                notifyDataSetChanged();
             }
         });
 
@@ -187,11 +203,18 @@ public class SavedOffersAdapter extends AnimatedExpandableListView.AnimatedExpan
                 break;
         }
 
-        if (groupPosition %4 ==0){
+        if (offers.isOfferSelected()){
             viewHolder.description.setTextColor(resources.getColor(R.color.accent));
             viewHolder.heading.setTextColor(resources.getColor(R.color.accent));
             viewHolder.expiration.setTextColor(resources.getColor(R.color.accent));
+            viewHolder.offerSelected.setBackgroundResource(R.drawable.ic_action_undo);
             drawable = convertToGrayscale(drawable);
+        }else {
+            viewHolder.description.setTextColor(resources.getColor(R.color.text_body_color));
+            viewHolder.heading.setTextColor(resources.getColor(R.color.catalina_orange));
+            viewHolder.expiration.setTextColor(resources.getColor(R.color.text_body_color));
+            viewHolder.offerSelected.setBackgroundResource(R.drawable.ic_action_accept);
+            drawable = convertToColor(drawable);
         }
 
         viewHolder.imageView.setImageDrawable(drawable);
@@ -199,10 +222,27 @@ public class SavedOffersAdapter extends AnimatedExpandableListView.AnimatedExpan
         return convertView;
     }
 
+    public void addNewOffer(Offers offers){
+        offersList.add(offers);
+        notifyDataSetChanged();
+    }
+
     protected Drawable convertToGrayscale(Drawable drawable)
     {
         ColorMatrix matrix = new ColorMatrix();
         matrix.setSaturation(0);
+
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
+
+        drawable.setColorFilter(filter);
+
+        return drawable;
+    }
+
+    protected Drawable convertToColor(Drawable drawable)
+    {
+        ColorMatrix matrix = new ColorMatrix();
+        matrix.setSaturation(1);
 
         ColorMatrixColorFilter filter = new ColorMatrixColorFilter(matrix);
 
@@ -241,7 +281,7 @@ public class SavedOffersAdapter extends AnimatedExpandableListView.AnimatedExpan
         TextView description;
         TextView heading;
         TextView expiration;
-        Button redeem;
+        Button offerSelected;
         Button expand;
     }
 

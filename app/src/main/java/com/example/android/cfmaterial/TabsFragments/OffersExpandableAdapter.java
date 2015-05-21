@@ -52,12 +52,12 @@ public class OffersExpandableAdapter extends AnimatedExpandableListView.Animated
 
     @Override
     public Object getGroup(int groupPosition) {
-        return null;
+        return offersList.get(groupPosition);
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return null;
+        return offersList.get(groupPosition);
     }
 
     @Override
