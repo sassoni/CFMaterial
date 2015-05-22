@@ -30,6 +30,19 @@
     <string name="edittext_dob_hint">Date Of Birth</string>
     <string name="button_login">Login</string>
 
+    <!--Registration-->
+    <string name="edittext_email_hint">Email Address</string>
+    <string name="edittext_zipcode_hint">Zip Code</string>
+    <string name="gender">Gender</string>
+    <string name="gender_male">Male</string>
+    <string name="gender_female">Female</string>
+    <string name="offer_alerts">Offer Alerts (Optional)</string>
+    <string name="offer_email_alerts">Send me new offer alerts via email</string>
+    <string name="offer_text_alerts">Send me occasional updates via text message (max 3x/month). Standard carrier fees will apply. You can cancel or opt out any time by texting stop to 22888</string>
+    <string name="register">REGISTER</string>
+    <string name="terms_of_service">TERMS OF SERVICE</string>
+    <string name="privacy_policy">PRIVACY POLICY</string>
+
     <!--Offer JSON String-->
     <string name="offer_data_json">[
     {

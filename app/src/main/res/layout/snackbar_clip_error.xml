@@ -20,7 +20,7 @@
 
     <Button
         android:id="@+id/snackbar_clip_error_retry"
-        style="?android:borderlessButtonStyle"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"

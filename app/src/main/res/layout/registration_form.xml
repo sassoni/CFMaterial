@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="30dp">
+
+        <EditText
+            android:id="@+id/edittext_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:digits="0123456789"
+            android:drawableLeft="@drawable/ic_action_call"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_action_call"
+            android:hint="@string/edittext_phone_number_hint"
+            android:imeOptions="actionNext"
+            android:inputType="phone" />
+
+        <EditText
+            android:id="@+id/edittext_dob"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:digits="0123456789"
+            android:drawableLeft="@drawable/ic_action_go_to_today"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_action_go_to_today"
+            android:hint="@string/edittext_dob_hint"
+            android:imeOptions="actionNext"
+            android:inputType="phone"
+            android:maxLength="4" />
+
+        <EditText
+            android:id="@+id/edittext_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:drawableLeft="@drawable/ic_action_email"
+            android:drawablePadding="5dp"
+            android:drawableStart="@drawable/ic_action_email"
+            android:hint="@string/edittext_email_hint"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/edittext_zipcode"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:digits="0123456789"
+                android:drawableLeft="@drawable/ic_action_place"
+                android:drawablePadding="5dp"
+                android:drawableStart="@drawable/ic_action_place"
+                android:hint="@string/edittext_zipcode_hint"
+                android:imeOptions="actionNext"
+                android:inputType="phone"
+                android:maxLength="5" />
+
+            <RelativeLayout
+                android:layout_width="48dp"
+                android:layout_height="48dp">
+
+                <Button
+                    android:id="@+id/zipcode_location"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_action_location_off" />
+
+                <ProgressBar
+                    android:id="@+id/location_progress"
+                    android:layout_width="45dp"
+                    android:layout_height="45dp"
+                    android:layout_centerInParent="true"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/gender"
+            android:textColor="@color/accent"
+            android:textSize="18sp" />
+
+        <RadioGroup
+            android:id="@+id/gender_radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/gender_radiobutton_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="@string/gender_male" />
+
+            <RadioButton
+                android:id="@+id/gender_radiobutton_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/gender_female" />
+
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/offer_alerts"
+            android:textColor="@color/accent"
+            android:textSize="18sp" />
+
+        <CheckBox
+            android:id="@+id/checkbox_email_alerts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:text="@string/offer_email_alerts" />
+
+        <CheckBox
+            android:id="@+id/checkbox_text_alerts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:text="@string/offer_text_alerts" />
+
+        <Button
+            android:id="@+id/terms"
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_of_service" />
+
+        <Button
+            android:id="@+id/privacy"
+            style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/privacy_policy" />
+
+    </LinearLayout>
+
+</ScrollView>
