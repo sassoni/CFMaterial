@@ -41,6 +41,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
     private Mode mode = Mode.ALL;
     private boolean showLoading = false;
+    private boolean fragmentStopped = false;
 
     private GridView gridView;
     private LinearLayout progressLayout;
@@ -167,6 +168,18 @@ public class RetailersFragment extends NavigationDrawerFragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        fragmentStopped = false;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        fragmentStopped = true;
+    }
+
+    @Override
     public void setupNavigationDrawer() {
         ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
         ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
@@ -238,10 +251,12 @@ public class RetailersFragment extends NavigationDrawerFragment {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            progressLayout.setVisibility(View.GONE);
-            gridView.setVisibility(View.VISIBLE);
-            loadingAnimation.stop();
-            setupToolbar();
+            if (!fragmentStopped) {
+                progressLayout.setVisibility(View.GONE);
+                gridView.setVisibility(View.VISIBLE);
+                loadingAnimation.stop();
+                setupToolbar();
+            }
         }
     }
 }

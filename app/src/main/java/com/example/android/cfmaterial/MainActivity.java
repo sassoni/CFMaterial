@@ -6,10 +6,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ListView;
 
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 import com.example.android.cfmaterial.navdrawer.NavDrawerRow;
@@ -22,10 +20,6 @@ import com.example.android.cfmaterial.tutorial.TutorialActivity;
 
 public class MainActivity extends AppCompatActivity implements RetailersFragment.OnRetailerClickedListener, NavDrawerItemClickedListener {
 
-    private Toolbar toolbar;
-    private DrawerLayout drawer;
-    private ListView drawerListView;
-
     // ---------- Lifecycle ---------- //
 
     @Override
@@ -33,19 +27,17 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawerListView = (ListView) findViewById(R.id.drawer_listview);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         setSupportActionBar(toolbar);
-        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.app_name, R.string.app_name);
-        drawer.setDrawerListener(drawerToggle);
+        ActionBarDrawerToggle drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.app_name, R.string.app_name);
+        drawerLayout.setDrawerListener(drawerToggle);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
         drawerToggle.syncState();
 
         if (savedInstanceState == null) {
-            //drawerListView.setItemChecked(3, true);
             RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true, 0);  // manual position?
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_container, retailersFragment)
@@ -59,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     public boolean onCreateOptionsMenu(Menu menu) {
 //        if (!mNavigationDrawerFragment.isDrawerOpen()) {
 //            // Only show items in the action bar relevant to this screen
-//            // if the drawer is not showing. Otherwise, let the drawer
+//            // if the drawerLayout is not showing. Otherwise, let the drawerLayout
 //            // decide what to show in the action bar.
 //            getMenuInflater().inflate(R.menu.main, menu);
 //            restoreActionBar();
@@ -101,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
 
     @Override
     public void onNavDrawerItemClicked(int position, NavDrawerRow.Action item) {
-        Log.i("MAIN", "listener listened!");
-
         Bundle bundle = new Bundle();
         bundle.putInt("position", position);
         switch (item) {
@@ -122,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
                 break;
             case HELP:
                 Intent tutorialIntent = new Intent(this, TutorialActivity.class);
+                tutorialIntent.putExtra("position", position);
                 startActivity(tutorialIntent);
                 break;
             case STORES:
