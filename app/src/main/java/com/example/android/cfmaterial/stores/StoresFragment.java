@@ -6,8 +6,6 @@ import android.app.Activity;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,15 +14,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.android.cfmaterial.MainActivity;
 import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
-import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -46,7 +41,7 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
     private ListView storesListView;
     private FloatingActionButton fab;
 
-    private String[] stores = new String[] { "Store 2", "Store 3", "Store 4", "Store 5", "Store 6" };
+    private String[] stores = new String[]{"Store 2", "Store 3", "Store 4", "Store 5", "Store 6"};
     private ArrayList<String> list;
     private Retailer retailer;
 
@@ -67,7 +62,9 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setHasOptionsMenu(true);
+
+        setHasOptionsMenu(true);
+
         if (getArguments() != null) {
             retailer = getArguments().getParcelable(RETAILER_KEY);
             positionInNavDrawer = getArguments().getInt(MainActivity.NAV_DRAWER_POSITION_KEY);
@@ -127,12 +124,6 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
         return view;
     }
 
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
@@ -156,16 +147,21 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
         toolbar.setTitle("Stores");
     }
 
-//    @Override
-//    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-//        inflater.inflate(R.menu.menu_tutorial, menu);
-//        super.onCreateOptionsMenu(menu, inflater);
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        return super.onOptionsItemSelected(item);
-//    }
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_scan).setVisible(false);
+        menu.findItem(R.id.action_save).setVisible(false);
+        menu.findItem(R.id.action_discard).setVisible(false);
+        menu.findItem(R.id.action_edit).setVisible(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {

@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.android.cfmaterial.card.CardFragment;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
@@ -59,25 +60,12 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-//        if (!mNavigationDrawerFragment.isDrawerOpen()) {
-//            // Only show items in the action bar relevant to this screen
-//            // if the drawer is not showing. Otherwise, let the drawer
-//            // decide what to show in the action bar.
-//            getMenuInflater().inflate(R.menu.main, menu);
-//            restoreActionBar();
-//            return true;
-//        }
-//        return super.onCreateOptionsMenu(menu);
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_scan) {
-            return true;
-        }
         return super.onOptionsItemSelected(item);
     }
 

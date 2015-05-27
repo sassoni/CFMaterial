@@ -61,7 +61,9 @@ public class CardFragment extends NavigationDrawerFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setHasOptionsMenu(true);
+
         if (getArguments() != null) {
             mode = (Mode) getArguments().getSerializable(MODE_KEY);
             positionInNavDrawer = getArguments().getInt(MainActivity.NAV_DRAWER_POSITION_KEY);
@@ -110,78 +112,69 @@ public class CardFragment extends NavigationDrawerFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
-        MenuItem search = menu.findItem(R.id.action_search);
-        MenuItem scan = menu.findItem(R.id.action_scan);
-        MenuItem save = menu.findItem(R.id.action_save);
-        MenuItem discard = menu.findItem(R.id.action_discard);
-        MenuItem edit = menu.findItem(R.id.action_edit);
 
-        search.setVisible(false);
-        scan.setVisible(false);
+        menu.findItem(R.id.action_search).setVisible(false);
+        menu.findItem(R.id.action_scan).setVisible(false);
+
         switch (mode) {
             case VIEW:
-                save.setVisible(false);
-                discard.setVisible(false);
-
-                edit.setVisible(true);
-                edit.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        enableEditing();
-                        return true;
-                    }
-                });
+                menu.findItem(R.id.action_save).setVisible(false);
+                menu.findItem(R.id.action_discard).setVisible(false);
+                menu.findItem(R.id.action_edit).setVisible(true);
                 break;
             case EDIT:
-                save.setVisible(true);
-                save.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Card saved",
-                                Toast.LENGTH_LONG).show();
-                        getActivity().getSupportFragmentManager().popBackStack();
-                        return true;
-                    }
-                });
-
-                discard.setVisible(true);
-                discard.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-                    @Override
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(getActivity().getApplicationContext(), "Changes discarded",
-                                Toast.LENGTH_LONG).show();
-                        getActivity().getSupportFragmentManager().popBackStack();
-                        return true;
-                    }
-                });
-
-                edit.setVisible(false);
+                menu.findItem(R.id.action_save).setVisible(true);
+                menu.findItem(R.id.action_discard).setVisible(true);
+                menu.findItem(R.id.action_edit).setVisible(false);
                 break;
         }
     }
 
     @Override
-    public void setupNavigationDrawer() {
-        ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
-        ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
-        smallLogo.setVisibility(View.VISIBLE);
-        smallLogo.setImageResource(R.drawable.cellfire_circle);
-        largeLogo.setImageResource(retailer.getDrawableId());
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_save:
+                Toast.makeText(getActivity().getApplicationContext(), "Card saved",
+                        Toast.LENGTH_LONG).show();
+                getActivity().getSupportFragmentManager().popBackStack();
+                break;
+            case R.id.action_discard:
+                Toast.makeText(getActivity().getApplicationContext(), "Changes discarded",
+                        Toast.LENGTH_LONG).show();
+                getActivity().getSupportFragmentManager().popBackStack();
+                break;
+            case R.id.action_edit:
+                enableEditing();
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 
-        final NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity(), navDrawerItemClickedListener);
-        adapter.populate(retailer);
+    @Override
+    public void setupNavigationDrawer() {
+//        ImageView largeLogo = (ImageView) getActivity().findViewById(R.id.drawer_large_logo);
+//        ImageView smallLogo = (ImageView) getActivity().findViewById(R.id.drawer_small_logo);
+//        smallLogo.setVisibility(View.VISIBLE);
+//        smallLogo.setImageResource(R.drawable.cellfire_circle);
+//        largeLogo.setImageResource(retailer.getDrawableId());
+//
+//        final NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity(), navDrawerItemClickedListener);
+//        adapter.populate(retailer);
 
         ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
-        final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
-
-        drawerListView.setAdapter(adapter);
-        drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                drawerLayout.closeDrawers();
-                navDrawerItemClickedListener.onNavDrawerItemClicked(position, adapter.getItem(position).getAction());
-            }
-        });
+//        final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);
+//
+//        drawerListView.setAdapter(adapter);
+//        drawerListView.setOnItemClickListener(new ListView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                drawerLayout.closeDrawers();
+//                navDrawerItemClickedListener.onNavDrawerItemClicked(position, adapter.getItem(position).getAction());
+//            }
+//        });
         drawerListView.setItemChecked(positionInNavDrawer, true);
     }
 

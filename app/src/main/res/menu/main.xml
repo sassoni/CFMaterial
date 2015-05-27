@@ -25,7 +25,7 @@
         app:showAsAction="always" />
     <item
         android:id="@+id/action_edit"
-        android:icon="@drawable/ic_action_edit_white"
+        android:icon="@drawable/ic_action_cancel_white"
         android:title="@string/action_edit"
         app:showAsAction="always" />
 </menu>

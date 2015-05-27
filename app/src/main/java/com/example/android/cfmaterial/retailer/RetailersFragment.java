@@ -8,6 +8,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -16,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.cfmaterial.MainActivity;
 import com.example.android.cfmaterial.NavigationDrawerFragment;
@@ -95,6 +99,9 @@ public class RetailersFragment extends NavigationDrawerFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setHasOptionsMenu(true);
+
         if (getArguments() != null) {
             mode = (Mode) getArguments().getSerializable(MODE_KEY);
             switch (mode) {
@@ -177,6 +184,35 @@ public class RetailersFragment extends NavigationDrawerFragment {
     public void onStop() {
         super.onStop();
         fragmentStopped = true;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+
+        menu.findItem(R.id.action_search).setVisible(true);
+        menu.findItem(R.id.action_scan).setVisible(true);
+        menu.findItem(R.id.action_save).setVisible(false);
+        menu.findItem(R.id.action_discard).setVisible(false);
+        menu.findItem(R.id.action_edit).setVisible(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id) {
+            case R.id.action_search:
+                Toast.makeText(getActivity().getApplicationContext(), "Search!",
+                        Toast.LENGTH_LONG).show();
+                break;
+            case R.id.action_scan:
+                Toast.makeText(getActivity().getApplicationContext(), "Scan!",
+                        Toast.LENGTH_LONG).show();
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     @Override
