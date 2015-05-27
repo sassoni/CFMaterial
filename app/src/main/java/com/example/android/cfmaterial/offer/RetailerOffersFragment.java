@@ -1,11 +1,13 @@
 package com.example.android.cfmaterial.offer;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.LocalBroadcastManager;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +56,8 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
 
     private static Handler handler;
 
+    private SwipeRefreshLayout swipeRefreshLayout;
+
     public interface RetailerOffersFragmentListener{
         public void OnOfferClip(Offers offers);
     }
@@ -93,6 +97,9 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
 
         loadOffersList(getString(R.string.offer_data_json));
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swiperefresh);
+        swipeRefreshLayout.setColorSchemeColors(new int[]{getResources().getColor(R.color.catalina_orange)});
+
         mBackgroundContainer = (BackgroundContainer) view.findViewById(R.id.listViewBackground);
         expandableListView = (AnimatedExpandableListView) view.findViewById(R.id.offer_listview);
         offersExpandableAdapter = new OffersExpandableAdapter(getActivity(), offersList, RetailerOffersFragment.this);
@@ -113,6 +120,27 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
         //actionBar = getActivity().getActionBar();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                initiateRefresh();
+            }
+        });
+    }
+
+    private void initiateRefresh() {
+        new DummyBackgroundTask().execute();
+    }
+
+    private void onRefreshComplete(List<String> result) {
+        // Stop the refreshing indicator
+        swipeRefreshLayout.setRefreshing(false);
     }
 
     @Override
@@ -322,4 +350,32 @@ public class RetailerOffersFragment extends Fragment implements OffersExpandable
         animateCouponClipped(msg.arg1);
         return true;
     }
+
+    /**
+     * Dummy {@link AsyncTask} which simulates a long running task to fetch new cheeses.
+     */
+    private class DummyBackgroundTask extends AsyncTask<Void, Void, Void> {
+
+        static final int TASK_DURATION = 10 * 1000; // 3 seconds
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            try {
+                Thread.sleep(TASK_DURATION);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+            onRefreshComplete(null);
+        }
+
+    }
+
 }

@@ -74,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity implements GoogleApi
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                registerUser();
             }
         });
 
@@ -94,6 +94,83 @@ public class RegistrationActivity extends AppCompatActivity implements GoogleApi
 
         handler = new Handler(this);
 
+    }
+
+    private void registerUser(){
+
+        String emailString = email.getText().toString();
+        if (!isValidEmail(emailString)){
+            email.setError(getString(R.string.email_error));
+        }
+
+        String phoneNumberString = phoneNumber.getText().toString();
+        if (!isValidPhoneNumber(phoneNumberString)){
+            phoneNumber.setError(getString(R.string.phone_error));
+        }
+
+        String dobString = dob.getText().toString();
+        if (!isDobValid(dobString)){
+            dob.setError(getString(R.string.dob_error));
+        }
+
+        String zipCodeString = zipCode.getText().toString();
+        if (!isValidZipCode(zipCodeString)){
+            zipCode.setError(getString(R.string.zip_error));
+        }
+
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumberString){
+        try {
+            Long.parseLong(phoneNumberString);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        if (phoneNumberString.length() != 10){
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValidZipCode(String zipCode){
+        try {
+            Long.parseLong(zipCode);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        if (zipCode.length() != 5){
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValidEmail(String emailString){
+        if (!emailString.contains("@") || !emailString.contains(".") || emailString.contains(" ")){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    private boolean isDobValid(String dobString){
+        try {
+            Long.parseLong(dobString);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        if (dobString.length() != 4){
+            return false;
+        }
+
+        return true;
     }
 
     @Override

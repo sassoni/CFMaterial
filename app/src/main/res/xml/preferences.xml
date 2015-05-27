@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory android:title="@string/preference_category_general">
+        <Preference
+            android:enabled="false"
+            android:key="@string/pref_key_phone"
+            android:title="@string/pref_phone_title" />
+        <Preference
+            android:enabled="false"
+            android:key="pref_dob"
+            android:summary="1985"
+            android:title="@string/pref_dob_title" />
+        <ListPreference
+            android:defaultValue="Male"
+            android:dialogTitle="@string/pref_gender_title"
+            android:entries="@array/preference_gender_entries"
+            android:entryValues="@array/preference_gender_values"
+            android:key="pref_gender"
+            android:title="@string/pref_gender_title" />
+        <EditTextPreference
+            android:dialogTitle="@string/pref_email_dialog_title"
+            android:key="pref_email"
+            android:title="@string/pref_email_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_category_notifications">
+        <ListPreference
+            android:defaultValue="1"
+            android:dialogTitle="@string/pref_expiration_title"
+            android:entries="@array/preference_expiration_entries"
+            android:entryValues="@array/preference_expiration_values"
+            android:key="pref_expiration"
+            android:summary="@string/pref_expiration_summary"
+            android:title="@string/pref_expiration_title" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_new_offers"
+            android:summary="@string/pref_new_offers_summary"
+            android:title="@string/pref_new_offers_title" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/preference_category_alerts">
+        <ListPreference
+            android:defaultValue="1"
+            android:dialogTitle="@string/pref_store_alerts_title"
+            android:entries="@array/preference_store_alert_entries"
+            android:entryValues="@array/preference_store_alert_values"
+            android:key="pref_store_alerts"
+            android:summary="@string/pref_store_alerts_summary"
+            android:title="@string/pref_store_alerts_title" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_email_alerts"
+            android:summary="@string/pref_email_alerts_summary"
+            android:title="@string/pref_email_alerts_title" />
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_text_alerts"
+            android:summary="@string/pref_text_alerts_summary"
+            android:title="@string/pref_text_alerts_title" />
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -32,6 +32,7 @@
     <string name="edittext_phone_number_hint">Phone</string>
     <string name="edittext_dob_hint">Date Of Birth</string>
     <string name="button_login">Login</string>
+    <string name="button_login_signup">OR SIGN UP</string>
 
     <!--Registration-->
     <string name="edittext_email_hint">Email Address</string>
@@ -45,6 +46,72 @@
     <string name="register">REGISTER</string>
     <string name="terms_of_service">TERMS OF SERVICE</string>
     <string name="privacy_policy">PRIVACY POLICY</string>
+    <string name="email_error">Please enter a valid Email Address</string>
+    <string name="phone_error">Please enter a valid Phone Number</string>
+    <string name="dob_error">Please enter a valid DOB</string>
+    <string name="zip_error">Please enter a valid zip code</string>
+
+    <!--Preference Fragment-->
+
+    <string name="pref_key_phone">pref_phone</string>
+    <string name="pref_key_dob">pref_dob</string>
+    <string name="pref_key_gender">pref_gender</string>
+    <string name="pref_key_email">pref_email</string>
+    <string name="pref_key_expiration">pref_expiration</string>
+    <string name="pref_key_new_offers">pref_new_offers</string>
+    <string name="pref_key_store_alerts">pref_store_alerts</string>
+
+    <string name="preference_category_general">GENERAL</string>
+    <string name="pref_phone_title">Phone Number</string>
+    <string name="pref_dob_title">Year of Birth</string>
+    <string name="pref_gender_title">Gender</string>
+    <string-array name="preference_gender_entries">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string-array name="preference_gender_values">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
+    <string name="pref_email_title">Email</string>
+    <string name="pref_email_dialog_title">Email Address</string>
+
+    <string name="preference_category_notifications">NOTIFICATION</string>
+    <string name="pref_expiration_title">Expiration Reminder</string>
+    <string name="pref_expiration_summary">Get notified when offers are about to expire.</string>
+    <string-array name="preference_expiration_entries">
+        <item>1 day before</item>
+        <item>2 days before</item>
+        <item>3 days before</item>
+        <item>No reminder</item>
+    </string-array>
+    <string-array name="preference_expiration_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>0</item>
+    </string-array>
+    <string name="pref_new_offers_title">New Offers</string>
+    <string name="pref_new_offers_summary">Get notified when offers are available</string>
+
+    <string name="preference_category_alerts">ALERTS</string>
+    <string name="pref_store_alerts_title">Store Alerts</string>
+    <string-array name="preference_store_alert_entries">
+        <item>All coupons</item>
+        <item>Saved coupons only</item>
+        <item>Off</item>
+    </string-array>
+    <string-array name="preference_store_alert_values">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+    <string name="pref_store_alerts_summary">Reminds you to check coupons when you enter your selected grocery stores.</string>
+    <string name="pref_email_alerts_title">Email Alerts</string>
+    <string name="pref_email_alerts_summary">Send me new offer alerts via email.</string>
+    <string name="pref_text_alerts_title">Text Alerts</string>
+    <string name="pref_text_alerts_summary">Send me occasioanl updates via text message (max 3x/month). Standard carrier fees will apply. You can cancel or opt out any time by texting STOP to 22888</string>
+    <string name="preference_activity_title">Settings</string>
 
     <!--Offer JSON String-->
     <string name="offer_data_json">[

@@ -6,25 +6,31 @@
     android:orientation="vertical">
 
     <view
+        android:id="@+id/listViewBackground"
         class="com.example.android.cfmaterial.offer.BackgroundContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:id="@+id/listViewBackground">
+        android:layout_weight="1">
 
-        <com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView
-            android:id="@+id/offer_listview"
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swiperefresh"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:drawSelectorOnTop="false"></com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView>
+            android:layout_height="match_parent">
+
+            <com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView
+                android:id="@+id/offer_listview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawSelectorOnTop="false"></com.example.android.cfmaterial.animatedexpandablelist.AnimatedExpandableListView>
+
+        </android.support.v4.widget.SwipeRefreshLayout>
 
     </view>
 
     <include
         android:id="@+id/snackbar_clip_success"
         layout="@layout/snackbar_clipped" />
-
 
     <include
         android:id="@+id/snackbar_clip_error"

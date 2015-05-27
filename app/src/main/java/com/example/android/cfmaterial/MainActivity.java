@@ -17,6 +17,7 @@ import com.example.android.cfmaterial.navdrawer.NavDrawerRow;
 import com.example.android.cfmaterial.offer.OffersTabsFragment;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.retailer.RetailersFragment;
+import com.example.android.cfmaterial.settings.SettingsActivity;
 import com.example.android.cfmaterial.stores.StoresFragment;
 import com.example.android.cfmaterial.tutorial.TutorialActivity;
 
@@ -141,14 +142,16 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
                 break;
             case HISTORY:
                 break;
-            case SETTINGS:
-                break;
             case HELP:
                 Intent tutorialIntent = new Intent(this, TutorialActivity.class);
                 tutorialIntent.putExtra(NAV_DRAWER_POSITION_KEY, position);
                 startActivity(tutorialIntent);
                 break;
             case ABOUT:
+                break;
+            case SETTINGS:
+                Intent settingsIntent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(settingsIntent);
                 break;
         }
 
