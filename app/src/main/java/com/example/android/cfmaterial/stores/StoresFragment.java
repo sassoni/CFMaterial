@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -15,11 +16,16 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.android.cfmaterial.MainActivity;
 import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
+import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
+import com.example.android.cfmaterial.retailer.Retailer;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -31,11 +37,8 @@ import com.melnykov.fab.FloatingActionButton;
 import java.util.ArrayList;
 
 public class StoresFragment extends NavigationDrawerFragment implements OnMapReadyCallback {
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
+    private static final String RETAILER_KEY = "retailer_key";
 
     private OnFragmentInteractionListener mListener;
 
@@ -45,15 +48,16 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
 
     private String[] stores = new String[] { "Store 2", "Store 3", "Store 4", "Store 5", "Store 6" };
     private ArrayList<String> list;
+    private Retailer retailer;
 
     boolean listHidden = true;
 
-    public static StoresFragment newInstance(/*String param1, String param2*/) {
+    public static StoresFragment newInstance(Retailer retailer, int position) {
         StoresFragment fragment = new StoresFragment();
-/*        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);*/
+        Bundle args = new Bundle();
+        args.putParcelable(RETAILER_KEY, retailer);
+        args.putInt(MainActivity.NAV_DRAWER_POSITION_KEY, position);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -64,10 +68,10 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 //        setHasOptionsMenu(true);
-/*        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }*/
+        if (getArguments() != null) {
+            retailer = getArguments().getParcelable(RETAILER_KEY);
+            positionInNavDrawer = getArguments().getInt(MainActivity.NAV_DRAWER_POSITION_KEY);
+        }
     }
 
     @Override
@@ -142,7 +146,8 @@ public class StoresFragment extends NavigationDrawerFragment implements OnMapRea
 
     @Override
     public void setupNavigationDrawer() {
-
+        ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
+        drawerListView.setItemChecked(positionInNavDrawer, true);
     }
 
     @Override

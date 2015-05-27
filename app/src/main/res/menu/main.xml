@@ -9,8 +9,23 @@
         android:title="@string/action_search"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_scan"
         android:icon="@drawable/ic_action_camera"
         android:title="@string/action_scan"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_save"
+        android:icon="@drawable/ic_action_accept_white"
+        android:title="@string/action_save"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_discard"
+        android:icon="@drawable/ic_action_cancel_white"
+        android:title="@string/action_discard"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_edit"
+        android:icon="@drawable/ic_action_edit_white"
+        android:title="@string/action_edit"
         app:showAsAction="always" />
 </menu>

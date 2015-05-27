@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android.cfmaterial.MainActivity;
 import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
@@ -27,7 +28,6 @@ public class RetailersFragment extends NavigationDrawerFragment {
     private static final String MODE_KEY = "mode_key";
     private static final String SHOW_LOADING_KEY = "show_loading_key";
 
-    // Mode: All, favorites or nearby
     public enum Mode {
         ALL, NEARBY, FAVORITES
     }
@@ -84,7 +84,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
         Bundle args = new Bundle();
         args.putSerializable(MODE_KEY, mode);
         args.putBoolean(SHOW_LOADING_KEY, showLoading);
-        args.putInt(NAV_DRAWER_POSITION_KEY, position);
+        args.putInt(MainActivity.NAV_DRAWER_POSITION_KEY, position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -109,7 +109,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                     break;
             }
             showLoading = getArguments().getBoolean(SHOW_LOADING_KEY);
-            positionInNavDrawer = getArguments().getInt(NAV_DRAWER_POSITION_KEY);
+            positionInNavDrawer = getArguments().getInt(MainActivity.NAV_DRAWER_POSITION_KEY);
         }
     }
 
@@ -245,7 +245,9 @@ public class RetailersFragment extends NavigationDrawerFragment {
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate();
-            progressText.setText("Loading...");
+            if (!fragmentStopped) {
+                progressText.setText("Loading...");
+            }
         }
 
         @Override

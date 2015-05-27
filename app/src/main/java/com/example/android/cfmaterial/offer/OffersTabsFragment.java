@@ -13,12 +13,12 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.android.cfmaterial.MainActivity;
 import com.example.android.cfmaterial.NavigationDrawerFragment;
 import com.example.android.cfmaterial.R;
 import com.example.android.cfmaterial.TabsViewPagerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
-import com.example.android.cfmaterial.navdrawer.NavDrawerRow;
 import com.example.android.cfmaterial.retailer.Retailer;
 import com.example.android.cfmaterial.slidingtabs.SlidingTabLayout;
 
@@ -42,7 +42,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         OffersTabsFragment fragment = new OffersTabsFragment();
         Bundle args = new Bundle();
         args.putParcelable(RETAILER_KEY, retailer);
-        args.putInt(NAV_DRAWER_POSITION_KEY, position);
+        args.putInt(MainActivity.NAV_DRAWER_POSITION_KEY, position);
         fragment.setArguments(args);
         return fragment;
     }
@@ -55,7 +55,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             retailer = getArguments().getParcelable(RETAILER_KEY);
-            positionInNavDrawer = getArguments().getInt(NAV_DRAWER_POSITION_KEY);
+            positionInNavDrawer = getArguments().getInt(MainActivity.NAV_DRAWER_POSITION_KEY);
         }
     }
 
@@ -96,7 +96,7 @@ public class OffersTabsFragment extends NavigationDrawerFragment {
         largeLogo.setImageResource(retailer.getDrawableId());
 
         final NavDrawerAdapter adapter = new NavDrawerAdapter(getActivity(), navDrawerItemClickedListener);
-        adapter.populate(retailer.getName());
+        adapter.populate(retailer);
 
         ListView drawerListView = (ListView) getActivity().findViewById(R.id.drawer_listview);
         final DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.drawer_layout);

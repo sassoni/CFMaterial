@@ -34,8 +34,11 @@ public class NavDrawerRowBuilder {
             case OFFERS:
                 row = new NavDrawerRow.Builder(NavDrawerRow.Type.ITEM).setText("Offers").setIcon(R.drawable.ic_action_view_as_list).setAction(action).build();
                 break;
-            case CARD:
-                row = new NavDrawerRow.Builder(NavDrawerRow.Type.ITEM).setText("Card").setIcon(R.drawable.ic_action_labels).setAction(action).build();
+            case ADD_CARD:
+                row = new NavDrawerRow.Builder(NavDrawerRow.Type.ITEM).setText("Add Card").setIcon(R.drawable.ic_action_labels).setAction(action).build();
+                break;
+            case MY_CARD:
+                row = new NavDrawerRow.Builder(NavDrawerRow.Type.ITEM).setText("My Card").setIcon(R.drawable.ic_action_labels).setAction(action).build();
                 break;
             case STORES:
                 row = new NavDrawerRow.Builder(NavDrawerRow.Type.ITEM).setText("Stores").setIcon(R.drawable.ic_action_map).setAction(action).build();

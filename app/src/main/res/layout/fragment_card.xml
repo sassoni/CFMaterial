@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.cfmaterial.card.CardFragment">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:background="@color/primary" />
+
+    <ImageView
+        android:id="@+id/fragment_card_image"
+        android:layout_width="wrap_content"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:paddingBottom="20dp"
+        android:paddingTop="20dp"
+        android:src="@drawable/logo_kroger_card" />
+
+<!--    <View
+        android:id="@+id/fragment_card_divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="150dp"
+        android:background="@color/accent" />-->
+
+    <!-- Default fab width: 56dp -->
+    <com.melnykov.fab.FloatingActionButton
+        android:id="@+id/fragment_card_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="120dp"
+        android:src="@drawable/ic_action_camera"
+        fab:fab_colorNormal="@color/accent"
+        fab:fab_colorPressed="@color/accent"
+        fab:fab_colorRipple="@color/accent_dark" />
+
+    <EditText
+        android:id="@+id/fragment_card_number_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_card_fab"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="60dp"
+        android:drawableLeft="@drawable/ic_action_labels"
+        android:drawablePadding="10dp"
+        android:hint="Card number" />
+
+    <EditText
+        android:id="@+id/fragment_card_notes_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_card_number_text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="20dp"
+        android:hint="Notes (optional)"
+        android:drawableLeft="@drawable/ic_action_attachment"
+        android:drawablePadding="10dp" />
+
+</RelativeLayout>

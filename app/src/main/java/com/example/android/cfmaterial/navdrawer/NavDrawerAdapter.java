@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
 import com.example.android.cfmaterial.R;
+import com.example.android.cfmaterial.retailer.Retailer;
 
 public class NavDrawerAdapter extends ArrayAdapter<NavDrawerRow> {
 
@@ -48,12 +49,18 @@ public class NavDrawerAdapter extends ArrayAdapter<NavDrawerRow> {
         addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT));
     }
 
-    public void populate(String retailerName) {
+    public void populate(Retailer retailer) {
         addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN));
         addRow(NavDrawerRowBuilder.getDivider());
-        addRow(NavDrawerRowBuilder.getHeader(retailerName));
+        addRow(NavDrawerRowBuilder.getHeader(retailer.getName()));
         addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.OFFERS));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.CARD));
+
+        if (retailer.hasCard()) {
+            addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.MY_CARD));
+        } else {
+            addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ADD_CARD));
+        }
+
         addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.STORES));
         addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HISTORY));
         addRow(NavDrawerRowBuilder.getDivider());

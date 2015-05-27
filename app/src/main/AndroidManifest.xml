@@ -34,6 +34,11 @@
             android:name=".RegistrationActivity"
             android:label="@string/title_activity_tutorial" >
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCX2Rx6jvveZRxbcqFdBJFPbcDaxWNoW80"/>
+
     </application>
 
 </manifest>
