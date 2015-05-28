@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -27,6 +28,10 @@ import com.example.android.cfmaterial.R;
 import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class RetailersFragment extends NavigationDrawerFragment {
 
     private static final String MODE_KEY = "mode_key";
@@ -46,6 +51,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
     private Mode mode = Mode.ALL;
     private boolean showLoading = false;
     private boolean fragmentStopped = false;
+    private RetailersAdapter adapter;
 
     private GridView gridView;
     private LinearLayout progressLayout;
@@ -53,35 +59,10 @@ public class RetailersFragment extends NavigationDrawerFragment {
     private TextView progressText;
     private AnimationDrawable loadingAnimation;
 
-    private Retailer[] allRetailers = new Retailer[]{
-            new Retailer("A&P", R.drawable.i_aandp),
-            new Retailer("Family Express", R.drawable.i_familyexpress),
-            new Retailer("Giant Carlisle", R.drawable.i_gc),
-            new Retailer("Giant Landover", R.drawable.i_gl),
-            new Retailer("Harris Teeter", R.drawable.i_harristeeter),
-            new Retailer("Kroger", R.drawable.i_kroger),
-            new Retailer("Marsh", R.drawable.i_marsh),
-            new Retailer("Martin's", R.drawable.i_martins),
-            new Retailer("Safeway", R.drawable.i_safeway),
-            new Retailer("ShopRite", R.drawable.i_shoprite),
-            new Retailer("Stop&Shop", R.drawable.i_stopandshop),
-            new Retailer("Walmart", R.drawable.i_walmart),
-            new Retailer("Weis", R.drawable.i_weis)
-    };
-
-    private Retailer[] nearbyRetailers = new Retailer[]{
-            new Retailer("Giant Landover", R.drawable.i_gl),
-            new Retailer("Harris Teeter", R.drawable.i_harristeeter),
-            new Retailer("Marsh", R.drawable.i_marsh),
-            new Retailer("Martin's", R.drawable.i_martins),
-    };
-
-    private Retailer[] favoriteRetailers = new Retailer[]{
-            new Retailer("Kroger", R.drawable.i_kroger),
-            new Retailer("Walmart", R.drawable.i_walmart),
-    };
-
-    Retailer[] retailers = allRetailers;
+    private List<Retailer> allRetailers;
+    private List<Retailer> nearbyRetailers;
+    private List<Retailer> favoriteRetailers;
+    private List<Retailer> retailers;
 
     public static RetailersFragment newInstance(Mode mode, boolean showLoading, int position) {
         RetailersFragment fragment = new RetailersFragment();
@@ -102,17 +83,44 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
         setHasOptionsMenu(true);
 
+        retailers = new ArrayList<>();
+
+        allRetailers = new ArrayList<>();
+        allRetailers.add(new Retailer("A&P", R.drawable.i_aandp));
+        allRetailers.add(new Retailer("Family Express", R.drawable.i_familyexpress));
+        allRetailers.add(new Retailer("Giant Carlisle", R.drawable.i_gc));
+        allRetailers.add(new Retailer("Giant Landover", R.drawable.i_gl));
+        allRetailers.add(new Retailer("Harris Teeter", R.drawable.i_harristeeter));
+        allRetailers.add(new Retailer("Kroger", R.drawable.i_kroger));
+        allRetailers.add(new Retailer("Marsh", R.drawable.i_marsh));
+        allRetailers.add(new Retailer("Martin's", R.drawable.i_martins));
+        allRetailers.add(new Retailer("Safeway", R.drawable.i_safeway));
+        allRetailers.add(new Retailer("ShopRite", R.drawable.i_shoprite));
+        allRetailers.add(new Retailer("Stop&Shop", R.drawable.i_stopandshop));
+        allRetailers.add(new Retailer("Walmart", R.drawable.i_walmart));
+        allRetailers.add(new Retailer("Weis", R.drawable.i_weis));
+
+        nearbyRetailers = new ArrayList<>();
+        nearbyRetailers.add(new Retailer("Family Express", R.drawable.i_familyexpress));
+        nearbyRetailers.add(new Retailer("Giant Landover", R.drawable.i_gl));
+        nearbyRetailers.add(new Retailer("Safeway", R.drawable.i_safeway));
+        nearbyRetailers.add(new Retailer("Weis", R.drawable.i_weis));
+
+        favoriteRetailers = new ArrayList<>();
+        favoriteRetailers.add(new Retailer("Kroger", R.drawable.i_kroger));
+        favoriteRetailers.add(new Retailer("Marsh", R.drawable.i_marsh));
+
         if (getArguments() != null) {
             mode = (Mode) getArguments().getSerializable(MODE_KEY);
             switch (mode) {
                 case ALL:
-                    retailers = allRetailers;
+                    retailers.addAll(allRetailers);
                     break;
                 case NEARBY:
-                    retailers = nearbyRetailers;
+                    retailers.addAll(nearbyRetailers);
                     break;
                 case FAVORITES:
-                    retailers = favoriteRetailers;
+                    retailers.addAll(favoriteRetailers);
                     break;
             }
             showLoading = getArguments().getBoolean(SHOW_LOADING_KEY);
@@ -125,7 +133,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_retailers, container, false);
 
-        RetailersAdapter adapter = new RetailersAdapter(getActivity(), retailers);
+        adapter = new RetailersAdapter(getActivity(), retailers);
 
         gridView = (GridView) view.findViewById(R.id.fragment_retailers_gridview);
         gridView.setAdapter(adapter);
@@ -133,7 +141,7 @@ public class RetailersFragment extends NavigationDrawerFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (retailerClickedListener != null) {
-                    retailerClickedListener.onRetailerClicked(retailers[position], positionInNavDrawer);
+                    retailerClickedListener.onRetailerClicked(retailers.get(position), positionInNavDrawer);
                 }
             }
         });
@@ -296,5 +304,35 @@ public class RetailersFragment extends NavigationDrawerFragment {
                 setupToolbar();
             }
         }
+    }
+
+    public void changeMode(Mode mode, int position) {
+        Log.i("RETAILERS", "mode changed");
+        positionInNavDrawer = position;
+        this.mode = mode;
+        switch (mode) {
+            case ALL:
+                Log.i("RETAILERS------------>", "allRetailers: " + allRetailers.size());
+                retailers.clear();
+                retailers.addAll(allRetailers);
+//                retailers = Arrays.asList(allRetailers;
+                break;
+            case NEARBY:
+                Log.i("RETAILERS------------>", "nearbyRetailers: " + nearbyRetailers.size());
+                retailers.clear();
+                retailers.addAll(nearbyRetailers);
+//                retailers = nearbyRetailers;
+                break;
+            case FAVORITES:
+                Log.i("RETAILERS------------>", "favoriteRetailers: " + favoriteRetailers.size());
+                retailers.clear();
+                retailers.addAll(favoriteRetailers);
+//                retailers = favoriteRetailers;
+                break;
+        }
+        Log.i("RETAILERS------------>", "retailers: " + retailers.size());
+//        adapter.clear();
+//        adapter.addAll(retailers);
+        adapter.notifyDataSetChanged();
     }
 }

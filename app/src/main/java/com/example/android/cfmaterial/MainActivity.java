@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.android.cfmaterial.card.CardFragment;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
@@ -29,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
 
     private DrawerLayout drawer;
     private Retailer currentRetailer;
+
+    private RetailersFragment retailersFragment;
 
     // ---------- Lifecycle ---------- //
 
@@ -49,9 +50,10 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
         drawerToggle.syncState();
 
         if (savedInstanceState == null) {
-            RetailersFragment retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true, 0);  // manual position?
+            retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true, 0);
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.activity_main_container, retailersFragment)
+                    //.addToBackStack(null)
                     .commit();
         }
     }
@@ -152,10 +154,11 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     }
 
     private void showRetailersFragment(RetailersFragment.Mode mode, int position) {
-        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false, position);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_container, retailersFragment)
-                .commit();
+        //RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false, position);
+        //getSupportFragmentManager().beginTransaction()
+         //       .replace(R.id.activity_main_container, retailersFragment)
+         //       .commit();
+        retailersFragment.changeMode(mode, position);
     }
 
     private void showOffersFragment(int position) {

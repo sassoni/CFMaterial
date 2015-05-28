@@ -10,12 +10,14 @@ import android.widget.TextView;
 
 import com.example.android.cfmaterial.R;
 
+import java.util.List;
+
 public class RetailersAdapter extends ArrayAdapter<Retailer> {
 
     private Context context;
-    private Retailer[] retailers;
+    private List<Retailer> retailers;
 
-    public RetailersAdapter(Context context, Retailer[] retailers) {
+    public RetailersAdapter(Context context, List<Retailer> retailers) {
         super(context, 0, retailers);
         this.context = context;
         this.retailers = retailers;
@@ -27,16 +29,16 @@ public class RetailersAdapter extends ArrayAdapter<Retailer> {
         View view = inflater.inflate(R.layout.retailers_gridview_tile, parent, false);
 
         ImageView imageView = (ImageView) view.findViewById(R.id.retailers_gridview_tile_image);
-        imageView.setImageResource(retailers[position].getDrawableId());
+        imageView.setImageResource(retailers.get(position).getDrawableId());
 
         TextView textView = (TextView) view.findViewById(R.id.retailers_gridview_tile_text);
-        textView.setText(retailers[position].getName());
+        textView.setText(retailers.get(position).getName());
 
         return view;
     }
 
     @Override
     public int getCount() {
-        return retailers.length;
+        return retailers.size();
     }
 }
