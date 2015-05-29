@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.android.cfmaterial.card.CardFragment;
+import com.example.android.cfmaterial.history.HistoryActivity;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 import com.example.android.cfmaterial.navdrawer.NavDrawerRow;
 import com.example.android.cfmaterial.offer.OffersTabsFragment;
@@ -131,6 +132,8 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
                 showStoresFragment(position);
                 break;
             case HISTORY:
+                Intent intent = new Intent(this, HistoryActivity.class);
+                startActivity(intent);
                 break;
             case HELP:
                 Intent tutorialIntent = new Intent(this, TutorialActivity.class);
