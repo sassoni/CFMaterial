@@ -34,15 +34,19 @@ public class NavDrawerRow {
     private final String text;
     private final int icon;
     private final Action action;
+    private final int position;
 
     public static class Builder {
         private final Type type;
+        private final int position;
+
         private String text = "";
         private int icon = -1;
         private Action action = Action.DEFAULT;
 
-        public Builder(Type type) {
+        public Builder(Type type, int position) {
             this.type = type;
+            this.position = position;
         }
 
         public Builder setText(String text) {
@@ -67,6 +71,7 @@ public class NavDrawerRow {
 
     private NavDrawerRow(Builder builder) {
         this.type = builder.type;
+        this.position = builder.position;
         this.text = builder.text;
         this.icon = builder.icon;
         this.action = builder.action;
@@ -102,6 +107,7 @@ public class NavDrawerRow {
         return action;
     }
 
-
-
+    public int getPosition() {
+        return position;
+    }
 }

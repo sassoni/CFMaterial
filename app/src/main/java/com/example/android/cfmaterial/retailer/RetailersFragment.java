@@ -29,7 +29,6 @@ import com.example.android.cfmaterial.navdrawer.NavDrawerAdapter;
 import com.example.android.cfmaterial.navdrawer.NavDrawerItemClickedListener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class RetailersFragment extends NavigationDrawerFragment {
@@ -64,6 +63,8 @@ public class RetailersFragment extends NavigationDrawerFragment {
     private List<Retailer> favoriteRetailers;
     private List<Retailer> retailers;
 
+    private RetailersManager retailersManager;
+
     public static RetailersFragment newInstance(Mode mode, boolean showLoading, int position) {
         RetailersFragment fragment = new RetailersFragment();
         Bundle args = new Bundle();
@@ -83,32 +84,12 @@ public class RetailersFragment extends NavigationDrawerFragment {
 
         setHasOptionsMenu(true);
 
+        retailersManager = new RetailersManager(getActivity());
+
         retailers = new ArrayList<>();
-
-        allRetailers = new ArrayList<>();
-        allRetailers.add(new Retailer("A&P", R.drawable.i_aandp));
-        allRetailers.add(new Retailer("Family Express", R.drawable.i_familyexpress));
-        allRetailers.add(new Retailer("Giant Carlisle", R.drawable.i_gc));
-        allRetailers.add(new Retailer("Giant Landover", R.drawable.i_gl));
-        allRetailers.add(new Retailer("Harris Teeter", R.drawable.i_harristeeter));
-        allRetailers.add(new Retailer("Kroger", R.drawable.i_kroger));
-        allRetailers.add(new Retailer("Marsh", R.drawable.i_marsh));
-        allRetailers.add(new Retailer("Martin's", R.drawable.i_martins));
-        allRetailers.add(new Retailer("Safeway", R.drawable.i_safeway));
-        allRetailers.add(new Retailer("ShopRite", R.drawable.i_shoprite));
-        allRetailers.add(new Retailer("Stop&Shop", R.drawable.i_stopandshop));
-        allRetailers.add(new Retailer("Walmart", R.drawable.i_walmart));
-        allRetailers.add(new Retailer("Weis", R.drawable.i_weis));
-
-        nearbyRetailers = new ArrayList<>();
-        nearbyRetailers.add(new Retailer("Family Express", R.drawable.i_familyexpress));
-        nearbyRetailers.add(new Retailer("Giant Landover", R.drawable.i_gl));
-        nearbyRetailers.add(new Retailer("Safeway", R.drawable.i_safeway));
-        nearbyRetailers.add(new Retailer("Weis", R.drawable.i_weis));
-
-        favoriteRetailers = new ArrayList<>();
-        favoriteRetailers.add(new Retailer("Kroger", R.drawable.i_kroger));
-        favoriteRetailers.add(new Retailer("Marsh", R.drawable.i_marsh));
+        allRetailers = retailersManager.getAllRetailers();
+        nearbyRetailers = retailersManager.getNearbyRetailers();
+        favoriteRetailers = retailersManager.getFavoriteRetailers();
 
         if (getArguments() != null) {
             mode = (Mode) getArguments().getSerializable(MODE_KEY);

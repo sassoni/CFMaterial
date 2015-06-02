@@ -5,11 +5,28 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <com.example.android.cfmaterial.retailer.RetailerImageView
-        android:id="@+id/retailers_gridview_tile_image"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp">
+
+        <com.example.android.cfmaterial.retailer.RetailerImageView
+            android:id="@+id/retailers_gridview_tile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+
+            android:src="@drawable/i_kroger" />
+
+        <ImageView
+            android:id="@+id/retailers_gridview_tile_card_indicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/retailers_gridview_tile_image"
+            android:background="#80000000"
+            android:padding="3dp"
+            android:src="@drawable/ic_card_membership_white_18dp" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/retailers_gridview_tile_text"
@@ -17,5 +34,6 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:gravity="center" />
+
 
 </LinearLayout>

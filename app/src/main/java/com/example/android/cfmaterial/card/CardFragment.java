@@ -82,6 +82,7 @@ public class CardFragment extends NavigationDrawerFragment {
 
         switch (mode) {
             case VIEW:
+                numberText.setText(retailer.getCard());
                 disableEditing();
                 break;
             case EDIT:

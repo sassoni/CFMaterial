@@ -37,40 +37,40 @@ public class NavDrawerAdapter extends ArrayAdapter<NavDrawerRow> {
     }
 
     public void populate() {
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN));
-        addRow(NavDrawerRowBuilder.getDivider());
-        addRow(NavDrawerRowBuilder.getHeader("Retailers"));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_ALL));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_FAV));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_NEAR));
-        addRow(NavDrawerRowBuilder.getDivider());
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.SETTINGS));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HELP));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN, 0));
+        addRow(NavDrawerRowBuilder.getDivider(1));
+        addRow(NavDrawerRowBuilder.getHeader("Retailers", 2));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_ALL, 3));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_FAV, 4));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_NEAR, 5));
+        addRow(NavDrawerRowBuilder.getDivider(6));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.SETTINGS, 7));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HELP, 8));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT, 9));
     }
 
     public void populate(Retailer retailer) {
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN));
-        addRow(NavDrawerRowBuilder.getDivider());
-        addRow(NavDrawerRowBuilder.getHeader(retailer.getName()));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.OFFERS));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.LOGIN, 0));
+        addRow(NavDrawerRowBuilder.getDivider(1));
+        addRow(NavDrawerRowBuilder.getHeader(retailer.getName(), 2));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.OFFERS, 3));
 
         if (retailer.hasCard()) {
-            addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.MY_CARD));
+            addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.MY_CARD, 4));
         } else {
-            addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ADD_CARD));
+            addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ADD_CARD, 4));
         }
 
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.STORES));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HISTORY));
-        addRow(NavDrawerRowBuilder.getDivider());
-        addRow(NavDrawerRowBuilder.getHeader("Retailers"));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_ALL));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_FAV));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_NEAR));
-        addRow(NavDrawerRowBuilder.getDivider());
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.SETTINGS));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HELP));
-        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.STORES, 5));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HISTORY, 6));
+        addRow(NavDrawerRowBuilder.getDivider(7));
+        addRow(NavDrawerRowBuilder.getHeader("Retailers", 8));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_ALL, 9));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_FAV, 10));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.RETAILERS_SHOW_NEAR, 11));
+        addRow(NavDrawerRowBuilder.getDivider(12));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.SETTINGS, 13));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.HELP, 14));
+        addRow(NavDrawerRowBuilder.getItem(NavDrawerRow.Action.ABOUT, 15));
     }
 }

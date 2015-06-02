@@ -2,6 +2,7 @@ package com.example.android.cfmaterial;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -30,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     private DrawerLayout drawer;
     private Retailer currentRetailer;
 
-    private RetailersFragment retailersFragment;
-
     // ---------- Lifecycle ---------- //
 
     @Override
@@ -51,11 +50,13 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
         drawerToggle.syncState();
 
         if (savedInstanceState == null) {
-            retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true, 0);
-            getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.activity_main_container, retailersFragment)
-                    //.addToBackStack(null)
-                    .commit();
+            showRetailersFragment(RetailersFragment.Mode.NEARBY, 0);
+
+//            retailersFragment = RetailersFragment.newInstance(RetailersFragment.Mode.NEARBY, true, 0);
+//            getSupportFragmentManager().beginTransaction()
+//                    .replace(R.id.activity_main_container, retailersFragment)
+//                    //.addToBackStack(null)
+//                    .commit();
         }
     }
 
@@ -77,11 +78,12 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     @Override
     public void onRetailerClicked(Retailer retailer, int fragmentPosition) {
         currentRetailer = retailer;
-        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance(retailer, fragmentPosition);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.activity_main_container, offersTabsFragment)
-                .addToBackStack(null)
-                .commit();
+        showOffersFragment(3/*fragmentPosition*/);
+//        OffersTabsFragment offersTabsFragment = OffersTabsFragment.newInstance(retailer, fragmentPosition);
+//        getSupportFragmentManager().beginTransaction()
+//                .replace(R.id.activity_main_container, offersTabsFragment)
+//                .addToBackStack(null)
+//                .commit();
     }
 
     // ---------- Aux ---------- //
@@ -89,26 +91,17 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     @Override
     public void onNavDrawerItemClicked(int position, NavDrawerRow.Action item) {
 
-        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
-        Log.i("MAIN", "count: " + backStackEntryCount);
-        if (backStackEntryCount > 1) {
-            getSupportFragmentManager().popBackStackImmediate();
-        }
-
-        /*
-       DEFAULT
-        HISTORY,
-        SETTINGS,
-        HELP,
-        ABOUT
-
-      */
-        //Bundle bundle = new Bundle();
-        //bundle.putInt(NAV_DRAWER_POSITION_KEY, position);
+//        // We wanna call that only when we show fragments, not activities
+//        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+//        Log.i("MAIN", "count: " + backStackEntryCount);
+//        if (backStackEntryCount > 1) {
+//            getSupportFragmentManager().popBackStackImmediate();
+//        }
 
         switch (item) {
             case LOGIN:
-                startLoginActivity(position);
+                Intent loginIntent = new Intent(this, LoginActivity.class);
+                startActivity(loginIntent);
                 break;
             case RETAILERS_SHOW_ALL:
                 showRetailersFragment(RetailersFragment.Mode.ALL, position);
@@ -132,12 +125,11 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
                 showStoresFragment(position);
                 break;
             case HISTORY:
-                Intent intent = new Intent(this, HistoryActivity.class);
-                startActivity(intent);
+                Intent historyIntent = new Intent(this, HistoryActivity.class);
+                startActivity(historyIntent);
                 break;
             case HELP:
                 Intent tutorialIntent = new Intent(this, TutorialActivity.class);
-                tutorialIntent.putExtra(NAV_DRAWER_POSITION_KEY, position);
                 startActivity(tutorialIntent);
                 break;
             case ABOUT:
@@ -150,21 +142,18 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
 
     }
 
-    private void startLoginActivity(int position) {
-        Intent intent = new Intent(this, LoginActivity.class);
-        intent.putExtra(NAV_DRAWER_POSITION_KEY, position);
-        startActivity(intent);
-    }
-
     private void showRetailersFragment(RetailersFragment.Mode mode, int position) {
-        //RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false, position);
-        //getSupportFragmentManager().beginTransaction()
-         //       .replace(R.id.activity_main_container, retailersFragment)
-         //       .commit();
-        retailersFragment.changeMode(mode, position);
+        popAllFromBackstack();
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);  // pop whole stack
+        RetailersFragment retailersFragment = RetailersFragment.newInstance(mode, false, position);
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.activity_main_container, retailersFragment)
+                .commit();
     }
 
     private void showOffersFragment(int position) {
+        popAllFromBackstack();
+
         OffersTabsFragment offersFragment = OffersTabsFragment.newInstance(currentRetailer, position);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, offersFragment)
@@ -173,6 +162,8 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     }
 
     private void showCardFrgament(CardFragment.Mode mode, int position) {
+        popAllFromBackstack();
+
         CardFragment cardFragment = CardFragment.newInstance(mode, currentRetailer, position);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, cardFragment)
@@ -181,6 +172,8 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
     }
 
     private void showStoresFragment(int position) {
+        popAllFromBackstack();
+
         StoresFragment storesFragment = StoresFragment.newInstance(currentRetailer, position);
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.activity_main_container, storesFragment)
@@ -194,6 +187,14 @@ public class MainActivity extends AppCompatActivity implements RetailersFragment
             drawer.closeDrawers();
         } else {
             super.onBackPressed();
+        }
+    }
+
+    private void popAllFromBackstack() {
+        int backStackEntryCount = getSupportFragmentManager().getBackStackEntryCount();
+        Log.i("MAIN", "count: " + backStackEntryCount);
+        if (backStackEntryCount > 1) {
+            getSupportFragmentManager().popBackStackImmediate();
         }
     }
 }
